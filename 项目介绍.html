@@ -69,14 +69,17 @@
   .nav button:hover{background:var(--shu-soft);}
   .page{position:fixed;left:22px;bottom:16px;font-size:13.5px;color:var(--muted);z-index:10;}
   .hint-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;font-size:12.5px;color:var(--muted);z-index:9;}
+  .langlink{position:fixed;right:22px;top:18px;font-size:13.5px;z-index:10;}
+  .langlink a{color:var(--ai);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;background:var(--card);}
   @media print{
     body{overflow:visible;}
     .slide{position:static;display:flex !important;page-break-after:always;min-height:100vh;}
-    .bar,.nav,.page,.hint-nav{display:none;}
+    .bar,.nav,.page,.hint-nav,.langlink{display:none;}
   }
 </style>
 </head>
 <body>
+<div class="langlink"><a href="项目介绍_EN.html">🌐 English</a></div>
 <div class="deck" id="deck">
 
   <!-- 1 封面 -->

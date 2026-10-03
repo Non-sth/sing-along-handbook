@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sing-Along Handbook · Project Intro</title>
+<style>
+  :root{
+    --ink:#2b2620; --muted:#8b8377; --line:#e6ddd0; --bg:#faf7f2; --card:#ffffff;
+    --shu:#b3543f; --shu-soft:#fbeee9; --ai:#4a6fa5; --ai-soft:#e8eef6;
+    --green:#2e8b57; --green-soft:#e7f3ec; --amber:#b07d10; --amber-soft:#faf3df;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{font-family:"Segoe UI","Helvetica Neue",system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden;}
+  .deck{position:fixed;inset:0;}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:48px 6vw 72px;}
+  .slide.on{display:flex;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  .inner{width:100%;max-width:960px;}
+  .kicker{font-size:14px;letter-spacing:.2em;color:var(--shu);font-weight:700;margin-bottom:14px;}
+  h1{font-size:52px;line-height:1.25;margin-bottom:18px;}
+  h2{font-size:36px;line-height:1.3;margin-bottom:22px;}
+  h3{font-size:19px;margin-bottom:8px;}
+  p{font-size:17px;line-height:1.9;color:#4a443b;}
+  .lead{font-size:21px;line-height:2;}
+  .muted{color:var(--muted);font-size:15px;}
+  .center{text-align:center;}
+  .mt{margin-top:22px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .card h3{color:var(--shu);}
+  .card p, .card li{font-size:15px;line-height:1.8;}
+  .tag{display:inline-block;font-size:12.5px;padding:2px 10px;border-radius:99px;background:var(--shu-soft);color:var(--shu);font-weight:700;margin-right:6px;}
+  .tag.b{background:var(--ai-soft);color:var(--ai);}
+  .tag.g{background:var(--green-soft);color:var(--green);}
+  .flow{display:flex;align-items:stretch;gap:0;margin:26px 0;flex-wrap:wrap;justify-content:center;}
+  .node{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center;min-width:128px;}
+  .node b{display:block;font-size:16px;margin-bottom:4px;}
+  .node span{font-size:12.5px;color:var(--muted);line-height:1.5;display:block;}
+  .node.hl{border-color:var(--shu);background:var(--shu-soft);}
+  .node.pc{border-color:var(--ai);background:var(--ai-soft);}
+  .node.ok{border-color:var(--green);background:var(--green-soft);}
+  .arr{display:flex;align-items:center;padding:0 10px;color:var(--shu);font-size:22px;font-weight:700;}
+  .tabs6{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;}
+  .tab{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ai);border-radius:10px;padding:13px 15px;}
+  .tab b{font-size:15.5px;display:block;margin-bottom:3px;}
+  .tab span{font-size:13px;color:var(--muted);line-height:1.55;display:block;}
+  .tab.first{border-left-color:var(--shu);background:var(--shu-soft);}
+  ol.steps{counter-reset:s;list-style:none;margin-top:8px;}
+  ol.steps li{counter-increment:s;position:relative;padding:14px 0 14px 64px;font-size:16.5px;line-height:1.8;border-bottom:1px dashed var(--line);}
+  ol.steps li:last-child{border-bottom:none;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:12px;width:42px;height:42px;border-radius:50%;
+    background:var(--shu);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .warnbox{background:var(--amber-soft);border:1px solid #e8d9a8;border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.9;}
+  .okbox{background:var(--green-soft);border:1px solid #bcdcc9;border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.9;}
+  ul.tight{padding-left:22px;}
+  ul.tight li{font-size:15.5px;line-height:2;}
+  kbd{background:#efe9df;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 8px;font-family:inherit;font-size:14px;}
+  .bar{position:fixed;left:0;right:0;bottom:0;height:5px;background:var(--line);z-index:10;}
+  .bar i{display:block;height:100%;background:var(--shu);width:0;transition:width .3s;}
+  .nav{position:fixed;right:22px;bottom:18px;display:flex;gap:8px;z-index:10;}
+  .nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;
+    padding:8px 18px;font-size:15px;cursor:pointer;}
+  .nav button:hover{background:var(--shu-soft);}
+  .page{position:fixed;left:22px;bottom:16px;font-size:13.5px;color:var(--muted);z-index:10;}
+  .hint-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;font-size:12.5px;color:var(--muted);z-index:9;}
+  .langlink{position:fixed;right:22px;top:18px;font-size:13.5px;z-index:10;}
+  .langlink a{color:var(--ai);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;background:var(--card);}
+  @media print{
+    body{overflow:visible;}
+    .slide{position:static;display:flex !important;page-break-after:always;min-height:100vh;}
+    .bar,.nav,.page,.hint-nav,.langlink{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="langlink"><a href="项目介绍.html">🌐 中文版</a></div>
+<div class="deck" id="deck">
+
+  <!-- 1 Cover -->
+  <section class="slide on">
+    <div class="inner center">
+      <div class="kicker">SING-ALONG HANDBOOK</div>
+      <h1>Sing-Along Handbook</h1>
+      <p class="lead">Turn <b>any song you own</b> into your own sing-along practice material —<br>
+      an AI panel on your PC does the making; an Android app does the practicing.</p>
+      <p class="mt muted">🐳 Before we start: the author loves DeepSeek's whale-girl mascot so much<br>
+      that he wants to marry her — that's why the app icon is a chubby whale.</p>
+      <p class="mt muted">Everything runs on your own devices; your audio never leaves your computer.<br>
+      Use <kbd>←</kbd> <kbd>→</kbd> or the buttons (bottom right) to flip pages.</p>
+    </div>
+  </section>
+
+  <!-- 2 Why -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">WHY THIS EXISTS</div>
+      <h2>Off-the-shelf karaoke can't sing "your" songs</h2>
+      <div class="grid2 mt">
+        <div class="card">
+          <h3>Typical karaoke apps</h3>
+          <p>You can only sing what's in their catalog;<br>audio quality, lyrics and timing are decided by the platform;<br>rare tracks, live versions and foreign songs are often missing.</p>
+        </div>
+        <div class="card" style="border-color:var(--shu)">
+          <h3>This project's way</h3>
+          <p>Take <b>any</b> song you have → AI splits it into instrumental + vocals on your PC →
+          pair it with lyrics to make a "practice page" → load it on your phone and practice anywhere.</p>
+        </div>
+      </div>
+      <p class="mt">Practice pages support: <b>word-by-word highlighting</b> (the syllable being sung lights up),
+      <b>one-tap original / instrumental / vocals switching</b>, <b>tempo control</b>, <b>single-line looping</b> —
+      designed for truly mastering a song.</p>
+    </div>
+  </section>
+
+  <!-- 3 Two parts -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">TWO PARTS</div>
+      <h2>One PC + one phone, each doing its job</h2>
+      <div class="grid2 mt">
+        <div class="card">
+          <h3>🖥️ PC: the separation panel</h3>
+          <p>A page that opens in your browser (127.0.0.1:8848).<br>
+          Pick a song file, click once, and AI separates instrumental and vocals locally — it can also
+          transcribe lyrics, denoise, and generate practice pages.</p>
+          <p class="muted mt">Runs fully locally. Nothing gets uploaded to any website.</p>
+        </div>
+        <div class="card">
+          <h3>📱 Phone: the player app</h3>
+          <p>An 8 MB Android app.<br>
+          Zip the finished "song folder" from your PC, send it to your phone, import — and it becomes
+          a sing-along practice book.</p>
+          <p class="muted mt">Fully offline, zero storage permission, Android 7.0+.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Pipeline -->
+  <section class="slide">
+    <div class="inner center">
+      <div class="kicker">THE PIPELINE</div>
+      <h2>The journey of a song</h2>
+      <div class="flow">
+        <div class="node"><b>A song</b><span>mp3 / flac<br>audio on your PC</span></div>
+        <div class="arr">→</div>
+        <div class="node pc"><b>Separate</b><span>AI splits<br>instrumental + vocals</span></div>
+        <div class="arr">→</div>
+        <div class="node pc"><b>Lyrics</b><span>provide a file<br>or auto-transcribe</span></div>
+        <div class="arr">→</div>
+        <div class="node hl"><b>Render</b><span>practice page<br>+ zip package</span></div>
+        <div class="arr">→</div>
+        <div class="node ok"><b>Phone</b><span>import zip<br>start practicing</span></div>
+      </div>
+      <p>The three middle steps all happen in the PC panel; <b>the "① Workflow" tab chains them together
+      into a one-click pipeline</b>.</p>
+      <p class="muted mt">A ~3-minute song takes about 1 minute on a PC with a dedicated GPU; CPU-only works too, just slower.</p>
+    </div>
+  </section>
+
+  <!-- 5 Six tabs -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">PANEL TOUR</div>
+      <h2>Six tabs, one job each</h2>
+      <div class="tabs6">
+        <div class="tab first"><b>① Workflow</b><span>Recommended entry: chains the whole pipeline into nodes; warns you in advance if anything is missing</span></div>
+        <div class="tab"><b>② Separation</b><span>Just want the instrumental or vocals? Pick a song, click once — compare multiple models side by side</span></div>
+        <div class="tab"><b>③ Lyrics + Timing</b><span>No lyric file? Auto-transcribe from audio/video, with on-the-spot proofreading</span></div>
+        <div class="tab"><b>④ Practice Page</b><span>Original + instrumental + lyrics → practice page; Japanese songs get automatic romaji</span></div>
+        <div class="tab"><b>⑤ Denoise</b><span>Strip hiss / hum from recordings and live versions with dedicated models</span></div>
+        <div class="tab"><b>⑥ Model Library</b><span>Download new models online; recommendations match your GPU, with lighter alternatives when over budget</span></div>
+      </div>
+      <p class="mt center muted">Tab ① covers daily use; visit ②–⑤ when you want fine-grained control over a single step.</p>
+    </div>
+  </section>
+
+  <!-- 6 Workflow -->
+  <section class="slide">
+    <div class="inner center">
+      <div class="kicker">RECOMMENDED FLOW</div>
+      <h2>Workflow: chain the steps together</h2>
+      <div class="flow">
+        <div class="node hl"><b>① Source</b><span>pick a song</span></div>
+        <div class="arr">→</div>
+        <div class="node"><b>② Denoise</b><span>optional</span></div>
+        <div class="arr">→</div>
+        <div class="node"><b>③ Separate</b><span>pick a model</span></div>
+        <div class="arr">→</div>
+        <div class="node"><b>④ Lyrics</b><span>file or transcribe</span></div>
+        <div class="arr">→</div>
+        <div class="node ok"><b>⑤ Render</b><span>page + zip</span></div>
+      </div>
+      <div class="grid2" style="text-align:left">
+        <div class="okbox">✅ <b>Every node can be toggled</b>: clean source? Turn off denoise. Already have an instrumental? Turn off separation and point to your file.</div>
+        <div class="warnbox">🛡️ <b>No wasted runs</b>: a pre-flight check runs before starting — missing song, model or lyrics are listed item by item.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 Models -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">ABOUT MODELS</div>
+      <h2>Models are the AI's "craft" — download on demand</h2>
+      <div class="grid2 mt">
+        <div class="card">
+          <h3>No expertise needed — follow the colors</h3>
+          <p>Each model in "⑥ Model Library" shows its size and VRAM need, color-coded against your GPU:</p>
+          <p class="mt"><span class="tag g">🟢 Comfortable</span> go ahead<br>
+          <span class="tag" style="background:var(--amber-soft);color:var(--amber)">🟡 Tight</span> runs, but close other apps<br>
+          <span class="tag">🔴 Over budget</span> won't run — alternatives suggested</p>
+        </div>
+        <div class="card">
+          <h3>The default is already strong</h3>
+          <p>The installer ships with the main model, so <b>the full pipeline works without downloading anything else</b>.
+          The library is for those who want to chase even better quality.</p>
+          <p class="mt muted">Models you download elsewhere are auto-detected once dropped into the model folder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 Phone -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">THE PHONE APP</div>
+      <h2>Install once, then just use it</h2>
+      <div class="grid2 mt">
+        <div class="card">
+          <h3>Install (once only)</h3>
+          <p>Download <code>SingAlong-Player-Android-v1.5.apk</code> from Releases, send it to your phone and
+          tap to install. Allow "unknown sources" when asked (normal for self-signed apps).</p>
+        </div>
+        <div class="card">
+          <h3>Your practice toolkit</h3>
+          <p>One-tap original / instrumental / vocals switching · word-by-word lyric highlighting ·
+          slow-down for tricky lines · single-line loop · timeline nudge · lyric search · printable score</p>
+        </div>
+      </div>
+      <p class="mt">Getting songs over: tick "pack mobile zip" when rendering on PC → send via any file-transfer
+      tool / cable / cloud drive → tap "＋ Import song zip" in the app. One zip can hold several songs.</p>
+    </div>
+  </section>
+
+  <!-- 9 Quick start -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">QUICK START</div>
+      <h2>Your first song in three minutes</h2>
+      <ol class="steps">
+        <li><b>Install</b> (first time only, ~25–50 min): download <code>SingAlong-Setup-v1.5.exe</code> from
+        Releases and double-click — it sets up the Python environment, AI components and the default model automatically.</li>
+        <li><b>Launch the panel</b>: double-click the desktop "Sing-Along" shortcut; the browser opens the panel.
+        A green status bar on top means ready. The 🌐 button (top right) switches 中文/EN.</li>
+        <li><b>Run the workflow</b>: in "① Workflow" pick a song, confirm the lyrics source, hit run;
+        then send the zip to your phone, import into the app, and practice.</li>
+      </ol>
+      <p class="mt center muted">Stuck? The panel prints the reason in plain language. If it's still stuck, send the on-page log to a tech-savvy friend or an AI assistant.</p>
+    </div>
+  </section>
+
+  <!-- 10 Boundaries -->
+  <section class="slide">
+    <div class="inner">
+      <div class="kicker">READ BEFORE USE</div>
+      <h2>Two things, said upfront</h2>
+      <div class="grid2 mt">
+        <div class="warnbox">
+          <b>⚖️ Copyright</b><br>
+          Processing audio <b>you already own</b> for personal practice is fair use;
+          but <b>do not</b> upload or share the separated stems, practice pages or lyric files with others — that's copying and distribution.
+          Generated pages carry a disclaimer in the footer; please keep it.
+        </div>
+        <div class="okbox">
+          <b>🎯 Honest limits</b><br>
+          AI separation is never 100% clean (a faint vocal ghost may remain in the instrumental) —
+          <b>plenty for practice, but not for publishing covers</b>.
+          It also can't crack encrypted formats like KuGou's .kgm — export normal audio from the client first.
+        </div>
+      </div>
+      <p class="mt center muted">Documentation is open under the MIT license; full source code is available to collaborators on request.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="bar"><i id="bar"></i></div>
+<div class="page" id="page"></div>
+<div class="hint-nav">← → navigate · P to print</div>
+<div class="nav">
+  <button id="prev">← Prev</button>
+  <button id="next">Next →</button>
+</div>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide'), i = 0;
+  var bar = document.getElementById('bar'), page = document.getElementById('page');
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    page.textContent = (i + 1) + ' / ' + slides.length;
+  }
+  document.getElementById('prev').onclick = function(){ show(i - 1); };
+  document.getElementById('next').onclick = function(){ show(i + 1); };
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(i + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'p' || e.key === 'P') window.print();
+  });
+  document.getElementById('deck').addEventListener('click', function(e){
+    if (e.target.closest('.nav')) return;
+    show(i + 1);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>

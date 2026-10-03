@@ -9,7 +9,7 @@
 **一个跑在你自己电脑上的伴奏分离面板。**
 上传 mp3，出来伴奏和人声 —— 全程本地 AI 推理，音频不离开你的机器。
 
-做好的成品再推进手机 App，变成随时能翻开的跟唱练习册。
+做好的成品压缩包再推进手机 App，变成随时能翻开的跟唱练习册；电脑端直接点击跟唱页html文件就可以进行练习。
 
 [![Release](https://img.shields.io/github/v/release/Non-sth/sing-along-handbook?style=flat-square&color=4a6fa5)](../../releases)
 [![Downloads](https://img.shields.io/github/downloads/Non-sth/sing-along-handbook/total?style=flat-square&color=2e8b57)](../../releases)
@@ -37,12 +37,12 @@
 
 | 步骤 | 做什么 | 要点 |
 |---|---|---|
-| ① | 去 [Releases](../../releases) 下载 **`跟唱练习器-装机版.exe`**，双击 | 自动装环境+默认分离模型（约 25-50 分钟下载 3.6GB，**只需这一次**），装完桌面会出现「跟唱练习器」图标 |
+| ① | 去 [Releases](../../releases) 下载 **`SingAlong-Setup-v1.5.exe`**（装机版），双击 | 自动装环境+默认分离模型（约 25-50 分钟下载 3.6GB，**只需这一次**），装完桌面会出现「跟唱练习器」图标 |
 | ② | 双击桌面 **「跟唱练习器」** | 浏览器自动打开面板 |
 | ③ | 点「① 工作流」，拖一首歌进去 | 默认模型已装好；想换模型随时去「⑥ 模型库」 |
 
 > 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去 `%LOCALAPPDATA%\SingAlong`
-> 找到 `跟唱练习器.exe`，双击照样能开（环境和面板都存在那里，不跟 exe 走）。
+> 找到启动器 exe，双击照样能开（环境和面板都存在那里，不跟 exe 走）。
 
 ### macOS：能用，但没有一键安装包
 
@@ -353,6 +353,7 @@ sing-along-handbook/
 ├── examples/                         无版权演示素材（克隆后即可跑通）
 ├── run.sh                            ★ 命令行一键入口
 ├── 项目介绍.html                   ★ 不懂代码也能看：HTML 幻灯片讲清整个过程（双击即用）
+├── 项目介绍_EN.html                英文版项目介绍（English intro slideshow）
 ├── 安装环境.md                     ★ 从零装环境（含排错对照表）
 ├── 用户手册.md                     手机端使用
 ├── 仓库文件说明书.html              每个文件干什么

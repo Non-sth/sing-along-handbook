@@ -65,15 +65,15 @@ variable speed — and your files never leave your computer.
 
 | Step | What to do | Notes |
 |---|---|---|
-| ① | Download **`跟唱练习器-装机版.exe`** (installer) from [Releases](../../releases) and double-click | Installs Python env + AI components + ffmpeg + the default separation model automatically (~3.6 GB download, 25–50 min, **once only**). A desktop shortcut appears when done |
+| ① | Download **`SingAlong-Setup-v1.5.exe`** (installer) from [Releases](../../releases) and double-click | Installs Python env + AI components + ffmpeg + the default separation model automatically (~3.6 GB download, 25–50 min, **once only**). A desktop shortcut appears when done |
 | ② | Double-click the desktop **「跟唱练习器」** icon | The panel opens in your browser |
 | ③ | Open tab ① Workflow and drag a song in | Default model is pre-installed; grab more in tab ⑥ Models |
 
-Already set up the Python environment yourself? Use the smaller `跟唱练习器.exe`
+Already set up the Python environment yourself? Use the smaller `SingAlong-Launcher-v1.5.exe`
 (launcher only, 9 MB) instead.
 
 > Moved the exe or lost the shortcut? No problem — everything lives in
-> `%LOCALAPPDATA%\SingAlong`; run `跟唱练习器.exe` from there directly.
+> `%LOCALAPPDATA%\SingAlong`; run the launcher exe from there directly.
 
 ### macOS — works, but no one-click installer
 
@@ -119,7 +119,7 @@ and imported into the app — per-syllable romaji highlighting, loop-one-line,
 | `tools/scripts/` | Pipeline helpers (lyrics OCR/ASR, KRC parsing, self-checks) |
 | `安装环境.md` | Environment setup (Windows / macOS / Linux) |
 | `用户手册.md` | User manual |
-| `项目介绍.html` | A slideshow-style project intro (open in a browser) |
+| `项目介绍_EN.html` | A slideshow-style project intro in English (open in a browser); `项目介绍.html` is the Chinese original |
 | `CHANGELOG.md` | Changelog |
 
 ## License & copyright
