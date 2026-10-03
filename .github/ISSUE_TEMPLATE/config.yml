@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 使用手册与常见问题
+    url: https://github.com/Non-sth/sing-along-handbook/blob/main/docs/用户手册.md
+    about: 安装、导入、跟唱页操作说明，以及 6 类常见问题的解决办法
+  - name: 🤖 给 AI 智能体的开发指南
+    url: https://github.com/Non-sth/sing-along-handbook/blob/main/AGENTS.md
+    about: 想用 AI 改这个项目？先让它读这份文档

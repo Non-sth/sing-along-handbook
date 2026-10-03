@@ -1,0 +1,63 @@
+name: 🐛 问题反馈
+description: App 装了用不了、导入失败、界面异常
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。**先看一眼[常见问题](../blob/main/docs/用户手册.md#四碰到问题)**，
+        一半的问题那里已经有答案。
+  - type: input
+    id: version
+    attributes:
+      label: App 版本
+      description: 曲库页右上角，或 APK 文件名
+      placeholder: v1.4
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 手机型号 + Android 版本
+      placeholder: 小米 14 / Android 14
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开 App
+        2. 点「导入歌曲压缩包」
+        3. 选中 xxx.zip
+        4. 出现 xxx
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果 vs 实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志（可选但很有用）
+      description: 用数据线连电脑，在电脑上跑 `adb logcat | grep -i karaoke`
+      render: shell
+  - type: textarea
+    id: ziplist
+    attributes:
+      label: 若与导入相关，请贴 zip 的目录结构
+      description: 在电脑上跑 `unzip -l 你的文件.zip`
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 确认
+      options:
+        - label: 我已看过常见问题
+          required: true
+        - label: 我已搜索过现有 Issue
+          required: true
