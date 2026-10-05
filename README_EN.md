@@ -66,7 +66,7 @@ variable speed — and your files never leave your computer.
 ### Windows — the easy way (recommended for non-developers)
 
 Both paths below end with **double-clicking the same installer exe**; they differ only in where the
-~3.6 GB of resources come from. Pick one on the [Releases](../../releases) page.
+~3.6 GB of resources come from. Pick one on the [Releases](https://github.com/Non-sth/sing-along-handbook/releases) page.
 
 #### Option A — Online installer (1 file only)
 

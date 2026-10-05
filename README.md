@@ -11,9 +11,9 @@
 
 做好的成品压缩包再推进手机 App，变成随时能翻开的跟唱练习册；电脑端直接点击跟唱页html文件就可以进行练习。
 
-[![Release](https://img.shields.io/github/v/release/Non-sth/sing-along-handbook?style=flat-square&color=4a6fa5)](../../releases)
-[![Downloads](https://img.shields.io/github/downloads/Non-sth/sing-along-handbook/total?style=flat-square&color=2e8b57)](../../releases)
-[![Stars](https://img.shields.io/github/stars/Non-sth/sing-along-handbook?style=flat-square&color=e8b100)](../../stargazers)
+[![Release](https://img.shields.io/github/v/release/Non-sth/sing-along-handbook?style=flat-square&color=4a6fa5)](https://github.com/Non-sth/sing-along-handbook/releases)
+[![Downloads](https://img.shields.io/github/downloads/Non-sth/sing-along-handbook/total?style=flat-square&color=2e8b57)](https://github.com/Non-sth/sing-along-handbook/releases)
+[![Stars](https://img.shields.io/github/stars/Non-sth/sing-along-handbook?style=flat-square&color=e8b100)](https://github.com/Non-sth/sing-along-handbook/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10--3.12-3776ab?style=flat-square&logo=python&logoColor=white)](安装环境.md)
 [![CUDA](https://img.shields.io/badge/CUDA-optional%20but%20recommended-76b900?style=flat-square&logo=nvidia&logoColor=white)](安装环境.md)
@@ -35,7 +35,7 @@
 
 ### Windows：三步装好
 
-先在 [Releases 页面](../../releases) 选一种方式。两种方式**最后都是双击同一个 exe**，区别只在「资源从哪来」。
+先在 [Releases 页面](https://github.com/Non-sth/sing-along-handbook/releases) 选一种方式。两种方式**最后都是双击同一个 exe**，区别只在「资源从哪来」。
 
 ---
 
@@ -292,7 +292,7 @@ App 的做法是**在 App 里跑一个只监听 `127.0.0.1` 的本地 HTTP 服�
 | 📦 批量导入 | 一个 zip 放多首歌，支持多选 |
 | 📶 完全离线 · 🔐 零存储权限 | 字体在包里；导入走系统文件选择器 |
 
-去 [Releases](../../releases) 下载 `SingAlong-Player-Android-vX.X.apk`，
+去 [Releases](https://github.com/Non-sth/sing-along-handbook/releases) 下载 `SingAlong-Player-Android-vX.X.apk`，
 或直接取仓库里 [`player/assets/跟唱练习手册-播放端-vX.X.apk`](player/assets/)（同一个文件，仓库内保留中文名），传到手机，
 文件管理器点开安装即可。Android 7.0+，不联网，不装别的。
 

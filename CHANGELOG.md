@@ -604,9 +604,9 @@ examples/  无版权演示素材（原 desktop/examples/）
 
 ---
 
-[1.5]: ../../releases/tag/v1.5
-[1.4]: ../../releases/tag/v1.4
-[1.3]: ../../releases/tag/v1.3
-[1.2]: ../../releases/tag/v1.2
-[1.1]: ../../releases/tag/v1.1
-[1.0]: ../../releases/tag/v1.0
+[1.5]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.5
+[1.4]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.4
+[1.3]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.3
+[1.2]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.2
+[1.1]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.1
+[1.0]: https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.0
