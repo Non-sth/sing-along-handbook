@@ -248,8 +248,8 @@ App 的做法是**在 App 里跑一个只监听 `127.0.0.1` 的本地 HTTP 服�
 | 📦 批量导入 | 一个 zip 放多首歌，支持多选 |
 | 📶 完全离线 · 🔐 零存储权限 | 字体在包里；导入走系统文件选择器 |
 
-去 [Releases](../../releases) 下载 `跟唱练习手册-播放端-vX.X.apk`，
-或直接取仓库里 [`player/assets/`](player/assets/) 自带的最新版，传到手机，
+去 [Releases](../../releases) 下载 `SingAlong-Player-Android-vX.X.apk`，
+或直接取仓库里 [`player/assets/跟唱练习手册-播放端-vX.X.apk`](player/assets/)（同一个文件，仓库内保留中文名），传到手机，
 文件管理器点开安装即可。Android 7.0+，不联网，不装别的。
 
 > 首次安装提示红字是正常的 —— APK 用自签名证书，不是 Google Play 分发。
