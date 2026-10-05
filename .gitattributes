@@ -1,0 +1,11 @@
+# GitHub Linguist 配置
+#
+# 本仓是「文档 + 下载入口」公开仓（源码在私有 dev 仓）。
+# 项目介绍页是纯展示用 HTML，不是项目代码，
+# 不标记的话语言统计会显示「100% HTML」，产生误导。
+#
+# linguist-documentation：标记为文档，不计入语言统计条
+*.html linguist-documentation
+
+# 截图等素材同理，不计入
+docs/*.png linguist-documentation

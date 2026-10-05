@@ -38,9 +38,11 @@ in your browser and use it:
 │                 hum from recordings            │
 │  ⑥ Models       download models online,        │
 │                 ranked by your GPU             │
+│  ⑦ Voice booth  type text → character voice,   │
+│                 swappable voice models         │
 │                                                │
-│  env self-check · capability list · built-in   │
-│  ffmpeg post-processing                        │
+│  per-tab 🚀 GPU toggle · env self-check ·      │
+│  capability list · built-in ffmpeg             │
 └────────────────────────────────────────────────┘
           │
           │  finished song folder (karaoke page + stems + subtitles)

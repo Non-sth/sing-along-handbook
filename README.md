@@ -33,16 +33,46 @@
 **「面板」是什么？** 就是一个网页。你双击一个图标，浏览器自动打开一个页面，
 往里面拖歌、点按钮，完事。它不联网上传任何东西，跑在你自己电脑上。
 
-### Windows：三个文件搞定
+### Windows：下载 → 双击，搞定
 
-| 步骤 | 做什么 | 要点 |
+安装方式二选一（都在 [Releases](../../releases) 页面下载）：
+
+| 方式 | 下载什么 | 适合谁 |
 |---|---|---|
-| ① | 去 [Releases](../../releases) 下载 **`SingAlong-Setup-v1.5.exe`**（装机版），双击 | 自动装环境+默认分离模型（约 25-50 分钟下载 3.6GB，**只需这一次**），装完桌面会出现「跟唱练习器」图标 |
-| ② | 双击桌面 **「跟唱练习器」** | 浏览器自动打开面板 |
-| ③ | 点「① 工作流」，拖一首歌进去 | 默认模型已装好；想换模型随时去「⑥ 模型库」 |
+| **在线装机版**（17MB） | `SingAlong-Setup-v1.6.exe` 一个文件 | 网络稳定；安装时自动下载约 3.6GB 环境+默认模型（25-50 分钟，断了自动续传重试） |
+| **离线安装包**（约 3.3GB） | `SingAlong-Setup-v1.6.exe` + `SingAlong-Offline-part1.zip`、`part2.zip` 全部 | 网络差/想一次下载到处装；**下载完断网也能装** |
 
-> 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去 `%LOCALAPPDATA%\SingAlong`
-> 找到启动器 exe，双击照样能开（环境和面板都存在那里，不跟 exe 走）。
+**离线包装法**：把所有文件放进同一个文件夹，把几个 part zip **全部解压到当前文件夹**
+（会得到一个 `payload` 文件夹），然后双击 exe——检测到 `payload` 就全程本地安装，不联网。
+
+装完后：双击桌面**「跟唱练习器」** → 浏览器自动打开面板 → 点「① 工作流」拖一首歌进去。
+安装开头会弹窗让你**点选安装文件夹**（取消=默认 `%LOCALAPPDATA%\SingAlong`），
+结束前会问**是否创建桌面快捷方式**。
+
+<details>
+<summary>⌨️ 习惯命令行？一条命令下载（PowerShell / cmd 均可）</summary>
+
+```powershell
+# 在线装机版（17MB）
+curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
+
+# 离线安装包（ exe + 2 个分卷，约 3.3GB）
+curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
+curl.exe -L -o SingAlong-Offline-part1.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part1.zip
+curl.exe -L -o SingAlong-Offline-part2.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part2.zip
+
+# 解压全部分卷到当前文件夹（Windows 11 自带 tar）
+tar -xf SingAlong-Offline-part1.zip
+tar -xf SingAlong-Offline-part2.zip
+
+# 运行装机程序
+.\SingAlong-Setup-v1.6.exe
+```
+
+</details>
+
+> 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去安装目录
+> （默认 `%LOCALAPPDATA%\SingAlong`）找到启动器 exe，双击照样能开。
 
 ### macOS：能用，但没有一键安装包
 
@@ -74,8 +104,9 @@ mac 安装包（.app/.dmg）必须在 Mac 电脑上才能制作，作者暂时�
 │  ④ 制作跟唱页  原唱+伴奏+歌词 → 跟唱页 HTML    │
 │  ⑤ 音频降噪    专用降噪模型剥底噪/电流声       │
 │  ⑥ 模型库      联网下载模型 · 按显卡分级推荐   │
+│  ⑦ 语音台      打字 → 角色语音（可换声线模型） │
 │                                              │
-│  环境自检 · 能力清单 · 内置 ffmpeg 后处理      │
+│  每页顶部 🚀 GPU 开关 · 环境自检 · 能力清单    │
 └──────────────────────────────────────────────┘
           │
           │  做好的成品文件夹（跟唱页 + 音轨 + 字幕）
@@ -119,7 +150,7 @@ python -m audio_separator.separator.cli \
 
 | | |
 |---|---|
-| 🔗 **工作流一键全流程** | 把「降噪 → 分离 → 歌词 → 出片」编成节点链，每个节点可开关、可选模型；**启动前自动预检**，缺什么文件/模型逐项列出，不会白跑 |
+| 🔗 **工作流一键全流程** | 把「降噪 → 分离 → 歌词 →（可选 AI 翻译）→ 出片」编成节点链，每个节点可开关、可选模型；**启动前自动预检**，缺什么文件/模型逐项列出，不会白跑 |
 | 🎯 **提取伴奏轨** | 去掉人声只留伴奏 —— 跟唱练习的主产物 |
 | 🎤 **提取人声轨** | 剥出干声，扒唱法、对音、验证分离质量 |
 | 🧹 **音频降噪** | 专用降噪模型（UVR DeNoise 系）剥底噪/电流声/环境轰鸣；可作分离前置工序 |
@@ -139,6 +170,10 @@ python -m audio_separator.separator.cli \
 | 🧩 **任意自定义层** | 罗马音 / 译文 / 粤拼 / 生词注释都能自己传时间轴接进来，页面还能现场「+ 添加层」并命名 |
 | 🔌 **用户自带时间轴** | 已经有罗马音或译文轴的，直接上传即用 —— **不跑本地引擎**，再算一遍反倒是降级 |
 | 🪶 **制作开关** | 不想生成的层直接不生成：页面、ASS 都更轻，也能适配低配设备 |
+| 🎙️ **语音台（文字→语音）** | 打字就能出声：edge-tts 在线基底音 + 本地 DDSP-SVC 声线转换；8 种语气预设、AI 情感理解（先理解再说话）、一句多抽卡挑最好的、可换自己下载的声线模型，也能选「Edge 裸声线」秒出不加载模型 |
+| 🚀 **每页独立 GPU 开关** | 分离/歌词/降噪/语音台各自可切 GPU/CPU；工作流等页有全流程总开关；显卡型号实时探测，换台电脑显示它的卡 |
+| 🤖 **大模型设置（可选）** | 语音台的情感理解、歌词 AI 翻译都走它：DeepSeek 出厂内置只填 key，其他厂商（OpenAI 兼容）可自定义；**key 只存你电脑的用户目录，不进仓库** |
+| 🈂️ **AI 翻译歌词 + 罗马音校检** | 工作流里的节点：大模型翻译外语歌词，顺手校检本地罗马音引擎的误拆并标红；产出双语 LRC 直接喂给出片 |
 
 ### 能力边界
 
@@ -292,8 +327,9 @@ bash run.sh lyrics    # 从视频抠歌词（OCR + ASR）
 
 ## 🚀 完整工作流
 
-最省事的方式是面板的**「① 工作流」页签**：选好源音频，把「降噪 → 分离 → 歌词 → 出片」
-编成一条节点链一键跑完；启动前会自动预检，缺歌词、缺模型会逐项告诉你，不会白跑。
+最省事的方式是面板的**「① 工作流」页签**：选好源音频，把「降噪 → 分离 → 歌词 →
+（外语歌可插「AI 翻译歌词」）→ 出片」编成一条节点链一键跑完；启动前会自动预检，
+缺歌词、缺模型会逐项告诉你，不会白跑。
 
 想分步精细控制也行：
 
