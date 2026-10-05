@@ -33,30 +33,74 @@
 **「面板」是什么？** 就是一个网页。你双击一个图标，浏览器自动打开一个页面，
 往里面拖歌、点按钮，完事。它不联网上传任何东西，跑在你自己电脑上。
 
-### Windows：下载 → 双击，搞定
+### Windows：三步装好
 
-安装方式二选一（都在 [Releases](../../releases) 页面下载）：
+先在 [Releases 页面](../../releases) 选一种方式。两种方式**最后都是双击同一个 exe**，区别只在「资源从哪来」。
 
-| 方式 | 下载什么 | 适合谁 |
-|---|---|---|
-| **在线装机版**（17MB） | `SingAlong-Setup-v1.6.exe` 一个文件 | 网络稳定；安装时自动下载约 3.6GB 环境+默认模型（25-50 分钟，断了自动续传重试） |
-| **离线安装包**（约 3.3GB） | `SingAlong-Setup-v1.6.exe` + `SingAlong-Offline-part1.zip`、`part2.zip` 全部 | 网络差/想一次下载到处装；**下载完断网也能装** |
+---
 
-**离线包装法**：把所有文件放进同一个文件夹，把几个 part zip **全部解压到当前文件夹**
-（会得到一个 `payload` 文件夹），然后双击 exe——检测到 `payload` 就全程本地安装，不联网。
+#### 方式 A · 在线装机版（只下 1 个文件）
 
-装完后：双击桌面**「跟唱练习器」** → 浏览器自动打开面板 → 点「① 工作流」拖一首歌进去。
-安装开头会弹窗让你**点选安装文件夹**（取消=默认 `%LOCALAPPDATA%\SingAlong`），
-结束前会问**是否创建桌面快捷方式**。
+| 步骤 | 做什么 |
+|---|---|
+| 1️⃣ 下载 | 只下 **`SingAlong-Setup-v1.6.exe`**（17 MB） |
+| 2️⃣ 放哪 | **放哪儿都行**（桌面、下载文件夹都可以），这个方式**不需要解压任何东西** |
+| 3️⃣ 双击 | **双击 `SingAlong-Setup-v1.6.exe`** → 它自己上网取 3.6GB 环境+模型（25–50 分钟，断了会续传） |
+
+> 适合网络稳定的人。全程只有一个文件要管，不容易出错。
+
+---
+
+#### 方式 B · 离线安装包（下 3 个文件，断网也能装）
+
+| 步骤 | 做什么 |
+|---|---|
+| 1️⃣ 下载 3 个文件 | `SingAlong-Setup-v1.6.exe`（17 MB）+ `SingAlong-Offline-part1.zip`（1.81 GB）+ `SingAlong-Offline-part2.zip`（1.60 GB） |
+| 2️⃣ 全放进**同一个文件夹** | 比如新建 `D:\跟唱安装包\`，三个文件一个都不能少、不能分开放 |
+| 3️⃣ 解压到**当前文件夹** | 在**这个文件夹里**把两个 zip 都解压，目标是「解压到当前文件夹」，**不要**解压成 `SingAlong-Offline-part1\` 这种子文件夹 |
+| 4️⃣ 双击 exe | **双击 `SingAlong-Setup-v1.6.exe`** → 它看到旁边有 `payload\` 就全程本地安装，不联网 |
+
+解压完，文件夹应该长这样（关键：**`payload` 和 exe 同级**）：
+
+```
+D:\跟唱安装包\
+├─ SingAlong-Setup-v1.6.exe        ← 双击这个
+├─ SingAlong-Offline-part1.zip     （已解压，留着或删掉都行）
+├─ SingAlong-Offline-part2.zip     （同上）
+└─ payload\                        ← 两个 zip 解压出来的离线资源
+   ├─ python\   （Python 安装包）
+   ├─ wheels\   （全部依赖，含切块的 torch 大包）
+   └─ models\   （默认人声分离模型）
+```
+
+> ⚠️ **三种常见错法**（都会导致 exe 找不到离线资源、退化成慢慢联网下载）：
+> ① 三个文件放在了不同文件夹；② 只解压了其中一个 zip；③ 解压后多套了一层子文件夹
+> （变成 `...\SingAlong-Offline-part1\payload\`）。
+>
+> 简单自检：**`payload` 文件夹和 exe 挨在一起**，就对了。
+
+---
+
+#### 两种方式共有的两步交互
+
+安装过程中会问你两件事，都点一下就行：
+
+1. **开头弹窗选安装位置** —— 点确定＝选一个文件夹；点取消＝装到默认位置 `%LOCALAPPDATA%\SingAlong`
+2. **结束前问要不要建桌面快捷方式** —— 选「是」，装完桌面就有图标
+
+**装完之后**：双击桌面**「跟唱练习器」** → 浏览器自动打开面板 → 点「① 工作流」拖一首歌进去。
+
+> 已经自己按 [安装环境.md](安装环境.md) 装好 Python 环境的人：不用再下 17MB 装机版，
+> 直接用 `SingAlong-Launcher-v1.6.exe`（9 MB，纯启动器）即可。
 
 <details>
 <summary>⌨️ 习惯命令行？一条命令下载（PowerShell / cmd 均可）</summary>
 
 ```powershell
-# 在线装机版（17MB）
+# 方式 A：在线装机版（17MB）
 curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
 
-# 离线安装包（ exe + 2 个分卷，约 3.3GB）
+# 方式 B：离线安装包（ exe + 2 个分卷，约 3.3GB，请先建好同一个文件夹并 cd 进去）
 curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
 curl.exe -L -o SingAlong-Offline-part1.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part1.zip
 curl.exe -L -o SingAlong-Offline-part2.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part2.zip
