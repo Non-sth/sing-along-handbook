@@ -75,11 +75,41 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Your situation | Download | Unzip? |
 |---|---|---|
-| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17 MB) | no |
-| **No internet / very slow** | `SingAlong-Setup.exe` + `part1`–`part5` (~6.9 GB) | yes, all five zips |
+| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17.5 MB) | no |
+| **No internet / very slow** | `SingAlong-Setup.exe` + `part1`–`part5` (~7.2 GB, on the **v1.6.1 page**) | yes, all five zips |
+| **Environment already set up, just need an entry point** | `SingAlong-Launcher.exe` (8.9 MB) | no |
+| **On v1.6.1, only want the new panel** | `SingAlong-Panel-1.6.2.zip` (487 KB) | extract over `panel\` |
 
-> The two extra `Source code (zip)` / `Source code (tar.gz)` entries on the release page are
-> **auto-generated source snapshots** — nothing to do with installing. **Don't download them.**
+<details>
+<summary>❓ What are the 5 items on the release page? Why is everything only a few MB?</summary>
+
+| # | Item on the page | Suffix | Download? | What it is |
+|---|---|---|---|---|
+| 1 | `SingAlong-Setup.exe` (17.5 MB) | `.exe` | **yes** (most people only need this) | Full installer: sets up the environment, models and desktop icon |
+| 2 | `SingAlong-Panel-1.6.2.zip` (487 KB) | `.zip` | optional | Panel patch, 21 files: UI + scripts only |
+| 3 | `SingAlong-Launcher.exe` (8.9 MB) | `.exe` | optional | Launcher only — opens the panel, installs nothing |
+| 4 | `Source code (zip)` | `.zip` | **no** | **Source snapshot** GitHub generates automatically: plain text files of the whole repo. No exe, no models, no wheels — double-clicking does nothing. Cannot be deleted, and is useless for installing |
+| 5 | `Source code (tar.gz)` | `.tar.gz` | **no** | Same thing, different packaging format (Linux-friendly) |
+
+> Rule of thumb: **anything named `Source code` is an auto-generated snapshot — never download it.**
+> Downloading it anyway and leaving it in the folder **does not affect installation** — the installer only
+> looks for a `payload\` folder next to the exe and ignores everything else.
+
+**Why so small? Because this page ships *programs*, not *assets*.**
+
+| Layer | Content | Where | Size |
+|---|---|---|---|
+| Program | installer / launcher / panel | **the 3 assets on the latest release** | 26 MB |
+| Assets (offline) | torch, 60 wheels, Python 3.12, 28 models | **[the 5 parts on the v1.6.1 page](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)** | 7.22 GB |
+| Assets (online) | same | fetched by `SingAlong-Setup.exe` after you double-click | ~3.6 GB |
+
+- **Why assets are not re-released every version**: ① models are independent of the panel version — v1.6.2
+  fixes one bug, no reason to make everyone re-download 7 GB; ② GitHub caps a single asset at 2 GB
+  (torch alone is 2.4 GB, hence the two chunks) and caps total release size.
+- After installation that 7 GB is moved into `%LOCALAPPDATA%\SingAlong\envs\uvr\`
+  (~3.6 GB dependencies + ~4 GB models), so **you can delete `payload\` afterwards** and reclaim 7 GB.
+
+</details>
 
 #### Option A — Online installer (1 file only)
 
@@ -110,7 +140,7 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Step | Do this |
 |---|---|
-| 1️⃣ | Download all six: [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe) (17 MB) + [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) … [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip) (~6.7 GB total) |
+| 1️⃣ | Download all six: [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe) (17 MB) + [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) … [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip) (~7.2 GB total) |
 | 2️⃣ | Put **all six in the same folder**, e.g. `D:\singalong-setup\` — do not split them up |
 | 3️⃣ | Inside that folder, extract **all five** zips **into the current folder** (do **not** extract into a `SingAlong-Offline-part1\` subfolder) |
 | 4️⃣ | **Double-click `SingAlong-Setup.exe`** → seeing `payload\` next to it, it installs entirely offline |
@@ -120,16 +150,81 @@ The folder must look like this — key point: **`payload` sits next to the exe**
 ```
 D:\singalong-setup\
 ├─ SingAlong-Setup.exe              ← double-click this one
-├─ SingAlong-Offline-part1.zip      (already extracted; keep or delete)
-├─ SingAlong-Offline-part2.zip      (same)
-├─ SingAlong-Offline-part3.zip      (same)
-├─ SingAlong-Offline-part4.zip      (same)
-├─ SingAlong-Offline-part5.zip      (same)
-└─ payload\                          ← extracted offline resources
-   ├─ python\   (Python installer)
-   ├─ wheels\   (all deps, incl. the chunked torch wheel)
-   └─ models\   (all 28 models, ~4 GB)
+├─ SingAlong-Offline-part1.zip … part5.zip   (already extracted; keep or delete)
+└─ payload\                          ← everything the 5 zips produce: 4 folders / 93 files
+   ├─ python\
+   │   └─ python-3.12.10-amd64.exe   (official Python 3.12 installer, 26 MB — used as the "parent" runtime)
+   ├─ cuda_bootstrap\
+   │   ├─ _cuda_dll_bootstrap.pth    (makes torch's CUDA DLLs findable; missing ⇒ silently falls back to CPU)
+   │   └─ _cuda_dll_bootstrap.py
+   ├─ wheels\                         (60 dependency wheels + torch split in 2 chunks = 62 files)
+   │   ├─ torch-2.14.1+cu126-…whl.chunk001   ← torch is 2.4 GB, above GitHub's 2 GB per-asset cap
+   │   ├─ torch-2.14.1+cu126-…whl.chunk002   ← two halves, joined back by the installer
+   │   ├─ onnxruntime_gpu-1.22.0-…whl        (205 MB, GPU acceleration)
+   │   ├─ audio_separator-0.47.0-…whl        (the separation engine)
+   │   └─ …50-odd more (scipy / numba / librosa / numpy / soundfile / imageio-ffmpeg …)
+   └─ models\                         (28 files, ~4 GB)
+      ├─ bs_roformer_revive.ckpt      ← default separation model (610 MB) + config_bs_roformer_revive.yaml
+      ├─ melband_roformer_inst_v2.ckpt  ← highest quality tier (1502 MB) + its yaml
+      ├─ MelBandRoformer.ckpt         ← the other MelBand checkpoint (871 MB) + its yaml
+      ├─ BS-Roformer-Resurrection-Inst.ckpt  (195 MB) + its yaml
+      ├─ …(the remaining 20 weights/configs are listed in the collapsible block below)
+      └─ download_checks.json / mdx_model_data.json / vr_model_data.json  (model manifests)
 ```
+
+<details>
+<summary>📂 Click to see exactly which files the zips produce</summary>
+
+The 5 zips do **not** create 5 folders — every entry inside them starts with `payload\`, so
+"extract to the current folder" merges them into a single `payload\`.
+
+Total: **93 files = 1 Python installer + 2 GPU bootstrap scripts + 62 `wheels` files + 28 model files**.
+
+**① `payload\python\` (1 file, 26 MB)**
+
+| File | Purpose |
+|---|---|
+| `python-3.12.10-amd64.exe` | Official Python 3.12 installer. The installer uses it as a **parent runtime** to build an isolated venv — it is not meant for writing your own code |
+
+**② `payload\cuda_bootstrap\` (2 files)**
+
+| File | Purpose |
+|---|---|
+| `_cuda_dll_bootstrap.pth` + `_cuda_dll_bootstrap.py` | Registers torch's bundled CUDA DLL folders at startup. **No error if missing**, but inference silently runs on CPU — about ten times slower |
+
+**③ `payload\wheels\` (62 files = 60 dependency wheels + 2 torch chunks)**
+
+Everything is installed with `pip --no-index` from this folder, fully offline. The big ones:
+
+| File | Size | Purpose |
+|---|---|---|
+| `torch-2.14.1+cu126-cp312-cp312-win_amd64.whl.chunk001`<br>`…chunk002` | 1.85 GB<br>0.66 GB | PyTorch (CUDA 12.6 build). 2.4 GB total, split in two because of GitHub's 2 GB per-asset cap; the installer joins them first |
+| `onnxruntime_gpu-1.22.0-cp312-cp312-win_amd64.whl` | 205 MB | Runs the MDX-Net / denoise onnx models on the GPU. **Must be 1.22.0** — newer builds need CUDA 13 |
+| `audio_separator-0.47.0-py3-none-any.whl` | 0.4 MB | The separation engine |
+| `scipy` / `numpy` / `numba` / `llvmlite` / `librosa` / `scikit_learn` / `soundfile` / `imageio_ffmpeg` / `torchaudio` / `torchvision` … | rest | The remaining runtime dependencies, 50-odd in total |
+
+> The two `chunk001` / `chunk002` entries look like partial downloads, but **both are required** —
+> with only one half the installer fails with `is not a valid wheel filename`.
+
+**④ `payload\models\` (28 files = 16 weights + 9 yaml configs + 3 manifest json)**
+
+| Group | Files | Notes |
+|---|---|---|
+| 2-stem · vocals/instrumental | `bs_roformer_revive.ckpt` (610 MB) + `config_bs_roformer_revive.yaml` | **Default model**, used right after install |
+| | `melband_roformer_inst_v2.ckpt` (1502 MB) + `config_melbandroformer_inst_v2.yaml` | Highest-quality tier, heavy on VRAM |
+| | `MelBandRoformer.ckpt` (871 MB) + `config_melbandroformer_inst.yaml` | The other MelBand variant, for A/B tests |
+| | `BS-Roformer-Resurrection-Inst.ckpt` (195 MB) + `config_bs_resurrection_inst.yaml` | Instrumental-focused, small |
+| | `model_bs_roformer_ep_317_sdr_12.9755.yaml`, `model_bs_roformer_ep_368_sdr_12.9628.yaml` | Architecture configs for the two BS-Roformer releases |
+| Multi-stem · instrument split | 6 `.th` files: `955717e8-8726e21a.th`, `92cfc3b6-ef3bcb9c.th`, `04573f0d-f3cf25b2.th`, `5c90dfd2-34c22ccb.th`, `d12395a8-e57c48e6.th`, `f7e0c4bc-ba3fe64a.th` (80 MB each) | Demucs weights; the names are hashes, **do not rename** |
+| | `htdemucs.yaml`, `htdemucs_6s.yaml`, `htdemucs_ft.yaml` | Configs for the six above |
+| Lightweight fallback · MDX/VR | `Kim_Vocal_2.onnx`, `UVR-MDX-NET-Inst_HQ_3.onnx`, `UVR_MDXNET_KARA_2.onnx` (50–64 MB each) | Older architectures for low-VRAM machines |
+| Denoise / dereverb | `UVR-DeNoise.pth` (121 MB), `UVR-DeNoise-Lite.pth` (17 MB), `Reverb_HQ_By_FoxJoy.onnx` (64 MB) | Used by the "denoise" feature |
+| Manifests | `download_checks.json`, `mdx_model_data.json`, `vr_model_data.json` | Per-model parameters and download tables. Without them the model library tab is empty and separation fails |
+
+> All 28 are copied verbatim into `%LOCALAPPDATA%\SingAlong\envs\uvr\models\`; swap models later by
+> adding/removing files in that folder.
+
+</details>
 
 > 💡 **This bundle ships every model** — BS-Roformer (revive / resurrection / both MelBand variants),
 > MDX-Net (Karaoke 2 / Inst HQ 3 / Kim Vocal 2), VR denoise (DeNoise / DeNoise-Lite / Reverb) and the
@@ -141,13 +236,14 @@ D:\singalong-setup\
 
 ##### 📦 What each of the 5 parts contains
 
-| Part | Download size | What's inside |
+| Part | Download size (as shown on GitHub) | What's inside |
 |---|---|---|
-| `part1` | 1.81 GB | **First half of the torch wheel** (1850 MB chunk). torch is 2.4 GB, above GitHub's 2 GB per-asset cap, so it ships as two halves |
-| `part2` | 1.47 GB | **MelBand Roformer v2 separation model** (1502 MB) — the highest-quality tier |
-| `part3` | 1.47 GB | **The other MelBand Roformer checkpoint** (871 MB) + **second half of the torch wheel** (632 MB) |
-| `part4` | 1.78 GB | **13 models + onnxruntime-gpu**: the default `bs_roformer_revive` (610 MB), `BS-Roformer-Resurrection` (195 MB), `UVR-DeNoise` (121 MB), five Demucs checkpoints (80 MB each), four MDX-Net / denoise onnx models; plus onnxruntime-gpu 1.22 (205 MB, GPU acceleration) |
-| `part5` | 208 MB | **Python 3.12 installer** (26 MB) + **the remaining 59 dependency wheels** (scipy, llvmlite, imageio-ffmpeg…) + **13 small model files** (yaml configs, download manifests) |
+| `part1` | 1.94 GB | **First half of the torch wheel** (1850 MB chunk). torch is 2.4 GB, above GitHub's 2 GB per-asset cap, so it ships as two halves |
+| `part2` | 1.57 GB | **MelBand Roformer v2 separation model** (1502 MB) — the highest-quality tier |
+| `part3` | 1.58 GB | **The other MelBand Roformer checkpoint** (871 MB) + **second half of the torch wheel** (632 MB) |
+| `part4` | 1.91 GB | **13 models + onnxruntime-gpu**: the default `bs_roformer_revive` (610 MB), `BS-Roformer-Resurrection` (195 MB), `UVR-DeNoise` (121 MB), five Demucs checkpoints (80 MB each), four MDX-Net / denoise onnx models; plus onnxruntime-gpu 1.22 (205 MB, GPU acceleration) |
+| `part5` | 223 MB | **Python 3.12 installer** (26 MB) + **the remaining 59 dependency wheels** (scipy, llvmlite, imageio-ffmpeg…) + **13 small model files** (yaml configs, download manifests) |
+| **Total** | **7.2 GB** | 93 files land in `payload\` (full file list in the collapsible block above) |
 
 > ⚠️ **The parts are split by size, not by feature — you cannot skip any of them.**
 > `part1` and `part3` hold **the two halves of one torch wheel**; with either half missing pip fails
@@ -175,8 +271,36 @@ Look at the version badge in the panel header:
 > refresh the page.
 
 **Still on v1.6.0 or older?** That panel has no badge yet, so this version needs one manual install:
-run `SingAlong-Setup.exe` again (17 MB), or unzip `SingAlong-Panel-1.6.2.zip` over
-`%LOCALAPPDATA%\SingAlong\panel\` (486 KB). **After that you never have to do it again.**
+run `SingAlong-Setup.exe` again (17.5 MB), or unzip `SingAlong-Panel-1.6.2.zip` over
+`%LOCALAPPDATA%\SingAlong\panel\` (487 KB). **After that you never have to do it again.**
+
+<details>
+<summary>📂 Which files does the panel patch zip contain? (21 files, no wrapper folder)</summary>
+
+`SingAlong-Panel-1.6.2.zip` has **no `panel\` folder inside** — its entries sit at the archive root,
+so you must extract it *into* the target folder, not into a `SingAlong-Panel-1.6.2\` folder.
+
+| Path after extraction | What it is |
+|---|---|
+| `VERSION` | Version number, plain text `1.6.2`. This is how the panel detects its own age |
+| `assets\` (7) | `separator_panel.html` (the UI, 175 KB), `capabilities.json`, `model_catalog.json`, `kanji_readings.json`, `karaoke_page_template.html`, `fat_fish.ico`, `panel.ico` |
+| `scripts\` (9) | `serve_separator.py` (main program, 148 KB), `separate_worker.py`, `studio.py`, `lyrics_io.py`, `lyrics_from_video.py`, `probe_lyric_box.py`, `romaji_engine.py`, `english_engine.py`, `llm_client.py` |
+| `启动分离面板.bat`, `启动分离面板.sh`, `一键做跟唱页.bat` | Launch / export scripts |
+| `README.md` | The panel's own docs (23 KB) |
+
+Correct way, either one:
+
+1. Right-click the zip → "Extract All" → set the destination to `%LOCALAPPDATA%\SingAlong\panel` → confirm overwrite;
+2. Or extract somewhere empty → select all 21 items → copy → paste into `...\SingAlong\panel\` → "Replace files".
+
+**What it looks like when done wrong**: you end up with a `SingAlong-Panel-1.6.2\` folder on the desktop
+while `...\panel\VERSION` still holds the old number → the badge keeps offering the same patch forever.
+
+> This zip contains **no** models, songs, stems or Python environment (it is only 487 KB), so overwriting
+> with it can never lose your data.
+
+</details>
+
 >
 > Step-by-step guide (Chinese): **[面板资源与升级指南.md](面板资源与升级指南.md)** — where each file goes, the symptom table, and a post-upgrade checklist.
 

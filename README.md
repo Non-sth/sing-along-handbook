@@ -46,11 +46,41 @@
 
 | 你的情况 | 下哪些文件 | 要解压吗 |
 |---|---|---|
-| **能上网**（推荐走这条） | 只下 **`SingAlong-Setup.exe`**（17 MB） | 不用 |
-| **不能上网 / 网太慢** | `SingAlong-Setup.exe` + `part1`～`part5`（合计约 6.9 GB） | 5 个 zip 全部要解压 |
+| **能上网**（推荐走这条） | 只下 **`SingAlong-Setup.exe`**（17.5 MB） | 不用 |
+| **不能上网 / 网太慢** | `SingAlong-Setup.exe` + `part1`～`part5`（约 7.2 GB，在 **v1.6.1 页面**，不在最新版页面） | 5 个 zip 全部要解压 |
+| **已经装好环境，只想要个入口** | `SingAlong-Launcher.exe`（8.9 MB） | 不用 |
+| **装了 v1.6.1，只想换面板** | `SingAlong-Panel-1.6.2.zip`（487 KB） | 解压覆盖到 `panel\` |
 
-> 发布页上另外 2 个 `Source code (zip)` / `Source code (tar.gz)` 是 GitHub 给每个版本自动生成的
-> **源码快照**，跟安装完全无关——**不用下，也不影响使用**。
+<details>
+<summary>❓ 点开看：发布页那 5 项分别是什么？为什么都只有几 MB？</summary>
+
+**5 项逐项对照**（只有前 3 项是你上传的，后 2 项是 GitHub 自己塞进来的）：
+
+| # | 页面上这一项 | 后缀 | 要下吗 | 是什么、给谁 |
+|---|---|---|---|---|
+| 1 | `SingAlong-Setup.exe`（17.5 MB） | `.exe` | **要**（大多数人只下这个） | 装机版：装环境、装模型、建桌面图标 |
+| 2 | `SingAlong-Panel-1.6.2.zip`（487 KB） | `.zip` | 按需 | 面板补丁，21 个文件，只含界面与脚本 |
+| 3 | `SingAlong-Launcher.exe`（8.9 MB） | `.exe` | 按需 | 纯启动器，只开面板、不装环境 |
+| 4 | `Source code (zip)` | `.zip` | **不要** | GitHub 自动生成的**源码快照**：整个仓库的文字文件，没有 exe、没有模型、没有依赖包，解压出来双击没反应。删不掉，但对你装机零用处 |
+| 5 | `Source code (tar.gz)` | `.tar.gz` | **不要** | 同上，只是打包格式不同（Linux 常用），内容一模一样 |
+
+> 一句话记法：**名字里带 `Source code` 的两个 = GitHub 送的源码快照，永远不用下。**
+> 多下了、放着不管，**不会影响安装**——安装器只认 exe 旁边有没有 `payload\` 文件夹，别的文件一概不看。
+
+**为什么都只有几 MB？因为这一页放的全是「程序」，不是「资源」。**
+
+| 层次 | 内容 | 在哪 | 多大 |
+|---|---|---|---|
+| 程序 | 安装器 / 启动器 / 面板 | **最新版页面的 3 个附件** | 共 26 MB |
+| 资源（离线） | torch、60 个依赖包、Python 3.12、28 个模型 | **[v1.6.1 页面的 5 个分卷](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)** | 共 7.22 GB |
+| 资源（在线） | 同上 | 双击 `SingAlong-Setup.exe` 后它自己上网取 | 约 3.6 GB |
+
+- **资源为什么不跟新版本一起发**：① 模型跟面板版本无关，1.6.2 只修了一个 bug，没必要让所有人重下 7 GB；
+  ② GitHub 单个附件上限 2 GB（torch 一个包 2.4 GB，所以切成两块），单版本容量也有限。
+- 装完之后这 7 GB 会被搬到 `%LOCALAPPDATA%\SingAlong\envs\uvr\`（依赖约 3.6 GB + 模型约 4 GB），
+  **解压出来的 `payload\` 就能删了**，等于白捡 7 GB 空间。
+
+</details>
 
 ---
 
@@ -84,7 +114,7 @@
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 6 个 | **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB）+ [`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) · [`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip) · [`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip) · [`part4`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part4.zip) · [`part5`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)（合计约 6.9 GB） |
+| 1️⃣ 下载 6 个 | **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB）+ [`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) · [`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip) · [`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip) · [`part4`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part4.zip) · [`part5`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)（合计约 7.2 GB） |
 | 2️⃣ 放一起 | 6 个文件**全放进同一个文件夹**，例：新建 `D://跟唱安装包//`。不能分开放 |
 | 3️⃣ 解压 | 在**这个文件夹里**把 5 个 zip **全部**「解压到当前文件夹」。别解压成 `part1\` 这种子文件夹 |
 | 4️⃣ 双击 | 双击 `SingAlong-Setup.exe`。它看到旁边有 `payload\` 就全程本地安装，**不联网** |
@@ -92,26 +122,96 @@
 解压完，文件夹必须是这个样子（关键就一条：**`payload` 和 exe 挨在一起**）：
 
 ```
-D://跟唱安装包//
-├─ SingAlong-Setup.exe                      ← 双击这个（5 个 zip 解压完，留着或删掉都行）
-├─ SingAlong-Offline-part1.zip ～ part5.zip
-└─ payload\                                  ← 5 个 zip 解压出来的离线资源
-   ├─ python\          （Python 3.12 安装包，1 个文件，26 MB）
-   ├─ wheels\          （全部依赖 wheel，62 个文件，含切成两块的 torch 2.4 GB）
-   ├─ models\          （全部 28 个模型，约 4 GB）
-   └─ cuda_bootstrap\  （显卡加速的 DLL 引导，2 个文件）
+D:\跟唱安装包\
+├─ SingAlong-Setup.exe                       ← 双击这个（5 个 zip 解压完，留着或删掉都行）
+├─ SingAlong-Offline-part1.zip ～ part5.zip   （已解压，同上）
+└─ payload\                                   ← 5 个 zip 解压出来的全部离线资源：4 个文件夹 / 93 个文件
+   ├─ python\
+   │   └─ python-3.12.10-amd64.exe           （Python 3.12 官方安装包，26 MB，当「母版」用）
+   ├─ cuda_bootstrap\
+   │   ├─ _cuda_dll_bootstrap.pth            （让显卡加速的 DLL 能被找到，缺了会静默退回 CPU）
+   │   └─ _cuda_dll_bootstrap.py
+   ├─ wheels\                                 （60 个依赖包 + torch 切成的 2 块，共 62 个文件）
+   │   ├─ torch-2.14.1+cu126-…whl.chunk001    ← torch 一个包 2.4 GB，超 GitHub 单附件上限
+   │   ├─ torch-2.14.1+cu126-…whl.chunk002    ← 被切成两块，安装器会拼回一个文件
+   │   ├─ onnxruntime_gpu-1.22.0-…whl         （205 MB，显卡加速）
+   │   ├─ audio_separator-0.47.0-…whl         （分离主程序）
+   │   └─ …另 50 多个（scipy / numba / librosa / numpy / soundfile / imageio-ffmpeg …）
+   └─ models\                                 （28 个模型文件，约 4 GB）
+      ├─ bs_roformer_revive.ckpt              ← 默认分离模型（610 MB）+ 同名的 .yaml 配置
+      ├─ config_bs_roformer_revive.yaml
+      ├─ melband_roformer_inst_v2.ckpt        ← 最高质量档（1502 MB）+ 配套 yaml
+      ├─ MelBandRoformer.ckpt                 ← 另一版 MelBand（871 MB）+ 配套 yaml
+      ├─ BS-Roformer-Resurrection-Inst.ckpt   （195 MB）+ 配套 yaml
+      ├─ …（其余 20 个模型与配置，逐个列在下面的折叠块里）
+      └─ download_checks.json / mdx_model_data.json / vr_model_data.json  （模型清单，缺了模型页会空）
 ```
+
+<details>
+<summary>📂 点开看：解压完到底多出哪些文件（逐个写清）</summary>
+
+5 个 zip 解压出来**不是 5 个文件夹，而是合并成同一个 `payload\`**——每个 zip 里的路径都从
+`payload\` 开始，所以「解压到当前文件夹」才会自动拼到一起。
+
+合起来一共 **93 个文件 = 1 个 Python 安装包 + 2 个显卡引导脚本 + 62 个 `wheels` 文件 + 28 个模型文件**。
+
+**① `payload\python\`（1 个文件，26 MB）**
+
+| 文件 | 干什么 |
+|---|---|
+| `python-3.12.10-amd64.exe` | Python 3.12 官方安装包。安装器拿它当**母版**建独立环境，不是让你拿来写代码 |
+
+**② `payload\cuda_bootstrap\`（2 个文件）**
+
+| 文件 | 干什么 |
+|---|---|
+| `_cuda_dll_bootstrap.pth` + `_cuda_dll_bootstrap.py` | 启动时把 torch 自带的 CUDA DLL 目录注册进搜索路径。**缺了不报错**，但会静默退回 CPU，分离慢十倍 |
+
+**③ `payload\wheels\`（62 个文件 = 60 个依赖包 + torch 被切成的 2 块）**
+
+安装器用 `pip --no-index` 只从这个目录装依赖，全程不联网。体积大的几个：
+
+| 文件 | 大小 | 干什么 |
+|---|---|---|
+| `torch-2.14.1+cu126-cp312-cp312-win_amd64.whl.chunk001`<br>`torch-2.14.1+cu126-cp312-cp312-win_amd64.whl.chunk002` | 1.85 GB<br>0.66 GB | PyTorch（CUDA 12.6 构建）。整包 2.4 GB 超过 GitHub 单附件 2 GB 上限，只能切两块，安装器会先拼回一个完整 `.whl` |
+| `onnxruntime_gpu-1.22.0-cp312-cp312-win_amd64.whl` | 205 MB | MDX-Net 与降噪那几个 onnx 模型靠它上显卡。**必须 1.22.0**，更高版本要 CUDA 13，本机驱动不支持 |
+| `audio_separator-0.47.0-py3-none-any.whl` | 0.4 MB | 分离主程序 |
+| `scipy` / `numpy` / `numba` / `llvmlite` / `librosa` / `scikit_learn` / `soundfile` / `imageio_ffmpeg` / `torchaudio` / `torchvision` … | 其余 | 剩下的运行依赖，共 50 多个 |
+
+> 那两个 `chunk001` / `chunk002` 看着像「没下完的残文件」，其实**必须两个都在**：
+> 只留一块时安装器会报 `is not a valid wheel filename` 直接失败。
+
+**④ `payload\models\`（28 个 = 16 个权重 + 9 个 yaml 配置 + 3 个清单 json）**
+
+| 分组 | 文件 | 说明 |
+|---|---|---|
+| 二轨 · 人声/伴奏 | `bs_roformer_revive.ckpt`（610 MB）+ `config_bs_roformer_revive.yaml` | **默认模型**，装完就用它 |
+| | `melband_roformer_inst_v2.ckpt`（1502 MB）+ `config_melbandroformer_inst_v2.yaml` | 质量最高那一档，吃显存 |
+| | `MelBandRoformer.ckpt`（871 MB）+ `config_melbandroformer_inst.yaml` | 另一版 MelBand，用来 A/B 对比 |
+| | `BS-Roformer-Resurrection-Inst.ckpt`（195 MB）+ `config_bs_resurrection_inst.yaml` | 伴奏专用，体积小 |
+| | `model_bs_roformer_ep_317_sdr_12.9755.yaml`、`model_bs_roformer_ep_368_sdr_12.9628.yaml` | 两版 BS-Roformer 的架构配置 |
+| 多轨 · 拆乐器 | 6 个 `.th`：`955717e8-8726e21a.th`、`92cfc3b6-ef3bcb9c.th`、`04573f0d-f3cf25b2.th`、`5c90dfd2-34c22ccb.th`、`d12395a8-e57c48e6.th`、`f7e0c4bc-ba3fe64a.th`（各 80 MB） | Demucs 权重，文件名是哈希，**别改名** |
+| | `htdemucs.yaml`、`htdemucs_6s.yaml`、`htdemucs_ft.yaml` | 上面 6 个的配置 |
+| 轻量兜底 · MDX/VR | `Kim_Vocal_2.onnx`、`UVR-MDX-NET-Inst_HQ_3.onnx`、`UVR_MDXNET_KARA_2.onnx`（各 50–64 MB） | 老架构，显存紧张时用 |
+| 降噪 · 去混响 | `UVR-DeNoise.pth`（121 MB）、`UVR-DeNoise-Lite.pth`（17 MB）、`Reverb_HQ_By_FoxJoy.onnx`（64 MB） | 「降噪」功能用 |
+| 模型清单 | `download_checks.json`、`mdx_model_data.json`、`vr_model_data.json` | 每个模型的参数与下载地址表。缺了「⑥ 模型库」会空、分离会直接失败 |
+
+> 这 28 个会被安装器原样复制到 `%LOCALAPPDATA%\SingAlong\envs\uvr\models\`，
+> 之后想换模型，只要在那个目录里加减文件即可。
+
+</details>
 
 <details>
 <summary>📦 点开看：5 个分卷分别装的是什么</summary>
 
-| 分卷 | 下载体积 | 里面装的东西 |
+| 分卷 | 下载体积（GitHub 显示值） | 里面装的东西 |
 |---|---|---|
-| `part1` | 1.81 GB | **torch 主程序包的前一半**（1850 MB 切块）。torch 整个 2.4 GB，超过 GitHub 单个附件 2 GB 上限，只能切成两块分开装 |
-| `part2` | 1.47 GB | **MelBand Roformer v2 分离模型**（1502 MB）——分离质量最高的那一档 |
-| `part3` | 1.47 GB | **MelBand Roformer 另一版权重**（871 MB）+ **torch 的后一半**（632 MB） |
-| `part4` | 1.78 GB | **13 个模型 + onnxruntime-gpu**：默认模型 `bs_roformer_revive`（610 MB）、`BS-Roformer-Resurrection`（195 MB）、`UVR-DeNoise`（121 MB）、Demucs 五个（各 80 MB）、MDX-Net 与降噪音色四个 onnx；外加 onnxruntime-gpu 1.22（205 MB，显卡加速用） |
-| `part5` | 208 MB | **Python 3.12 安装包**（26 MB）+ **其余 59 个依赖 wheel**（scipy、llvmlite、imageio-ffmpeg 等）+ **13 个模型小文件**（yaml 配置、下载清单 json） |
+| `part1` | 1.94 GB | **torch 主程序包的前一半**（1850 MB 切块）。torch 整个 2.4 GB，超过 GitHub 单个附件 2 GB 上限，只能切成两块分开装 |
+| `part2` | 1.57 GB | **MelBand Roformer v2 分离模型**（1502 MB）——分离质量最高的那一档 |
+| `part3` | 1.58 GB | **MelBand Roformer 另一版权重**（871 MB）+ **torch 的后一半**（632 MB） |
+| `part4` | 1.91 GB | **13 个模型 + onnxruntime-gpu**：默认模型 `bs_roformer_revive`（610 MB）、`BS-Roformer-Resurrection`（195 MB）、`UVR-DeNoise`（121 MB）、Demucs 五个（各 80 MB）、MDX-Net 与降噪音色四个 onnx；外加 onnxruntime-gpu 1.22（205 MB，显卡加速用） |
+| `part5` | 223 MB | **Python 3.12 安装包**（26 MB）+ **其余 59 个依赖 wheel**（scipy、llvmlite、imageio-ffmpeg 等）+ **13 个模型小文件**（yaml 配置、下载清单 json） |
+| **合计** | **7.2 GB** | 落在 `payload\` 里共 93 个文件（逐个清单见上面那个折叠块） |
 
 > ⚠️ **分卷是按体积机械切的，不是按功能分的，不能只挑几个下。**
 > `part1` 和 `part3` 里装的是**同一个 torch 包的两半**，缺任何一半 pip 都会报
@@ -183,6 +283,32 @@ for ($i=1; $i -le 5; $i++) { tar -xf "SingAlong-Offline-part$i.zip" }
 
 > 更新只替换 `panel` 这一个目录。**你做的歌、分离结果、模型都在 `envs\uvr\models\`，一个都不动。**
 > 更新完在浏览器里按 **Ctrl+F5** 强刷一次，否则看到的还是旧界面。
+
+<details>
+<summary>📂 点开看：面板补丁 zip 解压出来是哪些文件（21 个，注意没有外层文件夹）</summary>
+
+`SingAlong-Panel-1.6.2.zip` 里**没有 `panel\` 这一层**——解压出来就是下面这些，直接铺在根上。
+所以**不能**「解压到 `SingAlong-Panel-1.6.2\`」，必须解压进目标目录本身。
+
+| 解压出来的路径 | 是什么 |
+|---|---|
+| `VERSION` | 版本号，一行纯文本 `1.6.2`。面板新旧就靠它判断 |
+| `assets\`（7 个） | `separator_panel.html`（界面本体，175 KB）、`capabilities.json`、`model_catalog.json`、`kanji_readings.json`、`karaoke_page_template.html`、`fat_fish.ico`、`panel.ico` |
+| `scripts\`（9 个） | `serve_separator.py`（主程序，148 KB）、`separate_worker.py`、`studio.py`、`lyrics_io.py`、`lyrics_from_video.py`、`probe_lyric_box.py`、`romaji_engine.py`、`english_engine.py`、`llm_client.py` |
+| `启动分离面板.bat`、`启动分离面板.sh`、`一键做跟唱页.bat` | 三个启动 / 出片脚本 |
+| `README.md` | 面板自己的说明（23 KB） |
+
+正确姿势（二选一）：
+
+1. 右键 zip →「全部解压缩」→ 目标框填 `%LOCALAPPDATA%\SingAlong\panel` → 覆盖确认点「是」；
+2. 或先解压到随便一个空文件夹 → 全选 21 项 → 复制 → 粘到 `...\SingAlong\panel\` → 「替换目标中的文件」。
+
+**没解压对的样子**：桌面多出一个 `SingAlong-Panel-1.6.2\` 文件夹，而 `...\panel\VERSION` 还是旧值
+→ 面板徽章照样显示 `↑ v1.6.2`，点它还是再下一个同样的补丁。
+
+> 这个 zip **不含**模型、歌、分离结果、Python 环境（才 487 KB），所以覆盖它永远不会弄丢你的东西。
+
+</details>
 
 > 每个文件具体放在哪、放错会有什么症状，见 **[面板资源与升级指南.md](面板资源与升级指南.md)**。
 
