@@ -20,10 +20,9 @@
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 [![Agent Ready](https://img.shields.io/badge/AI%20agent-ready-8a2be2?style=flat-square)](AGENTS.md)
 
-**能上网 → 只下这一个，双击，等它装完：**
+**安装只有一条路：下面 6 个文件全下（共 7.2 GB）→ 放同一个文件夹 → 5 个 zip 全解压 → 双击 exe。**
 **[⬇ `SingAlong-Setup.exe`（17 MB）](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
-
-**断网 → 上面那个 exe + 下面 5 个全下（共 7.2 GB，6 个文件放同一文件夹）：**
+　再下这 5 个：
 [`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip)
 [`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip)
 [`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip)
@@ -46,18 +45,24 @@
 ### Windows：只需要三件事——下对文件 → 双击 → 等它装完
 
 > **一句话版**：
-> 能上网 → 下 `SingAlong-Setup.exe` → 双击 → 等 25–50 分钟 → 桌面出现「跟唱练习器」→ 双击它开面板。
-> 没网 → 再多下 5 个分卷，**6 个文件放同一个文件夹**、把 5 个 zip 都解压到当前文件夹 → 双击同一个 exe。
+> 下 6 个文件（`SingAlong-Setup.exe` + `part1`～`part5`）→ **全放进同一个文件夹** →
+> 5 个 zip **全部解压到当前文件夹**（会合成一个 `payload\`）→ 双击 exe →
+> 等 20–40 分钟 → 桌面出现「跟唱练习器」→ 双击它开面板。
 
-#### 第 0 步：我该下哪个文件？（只看这一张表）
+#### 第 0 步：要下哪 6 个文件
 
-| 你的情况 | 下哪些文件 | 要解压吗 |
+| 文件 | 大小 | 作用 |
 |---|---|---|
-| **能上网**（推荐） | 只下 **`SingAlong-Setup.exe`**（17 MB） | 不用 |
-| **不能上网 / 网太慢** | 上面那个 exe + `part1`～`part5`（共 7.2 GB，链接都在本页最上面） | 5 个 zip 全部要解压 |
+| `SingAlong-Setup.exe` | 17 MB | 装机程序本身（双击它） |
+| `part1` ～ `part5` | 共 7.2 GB | 依赖包 + 28 个模型（离线资源，**5 个都要下，不能挑**） |
+
+6 个下载链接**都在本页最上面**，点一下就开始下。
 
 > 另有 `SingAlong-Panel-1.6.2.zip`（487 KB，只换界面）和 `SingAlong-Launcher.exe`（8.9 MB，
-> 只要个双击入口）两个小文件，**新手用不到**，需要时看下面的折叠块。
+> 只要个双击入口）两个小文件，**第一次装用不到**，需要时看下面的折叠块。
+>
+> **为什么不提供「只下 17 MB exe、让它自己上网下」那条路？** 那条路要现从 GitHub 拉 3.6 GB，
+> 国内实测经常卡死或报错，所以从文档里删掉了。**下 6 个文件反而是最稳的。**
 
 <details>
 <summary>❓ 点开看：发布页那 5 项分别是什么？为什么都只有几 MB？</summary>
@@ -66,7 +71,7 @@
 
 | # | 页面上这一项 | 后缀 | 要下吗 | 是什么、给谁 |
 |---|---|---|---|---|
-| 1 | `SingAlong-Setup.exe`（17.5 MB） | `.exe` | **要**（大多数人只下这个） | 装机版：装环境、装模型、建桌面图标 |
+| 1 | `SingAlong-Setup.exe`（17.5 MB） | `.exe` | **要** | 装机版：装环境、装模型、建桌面图标（离线装也靠它） |
 | 2 | `SingAlong-Panel-1.6.2.zip`（487 KB） | `.zip` | 按需 | 面板补丁，21 个文件，只含界面与脚本 |
 | 3 | `SingAlong-Launcher.exe`（8.9 MB） | `.exe` | 按需 | 纯启动器，只开面板、不装环境 |
 | 4 | `Source code (zip)` | `.zip` | **不要** | GitHub 自动生成的**源码快照**：整个仓库的文字文件，没有 exe、没有模型、没有依赖包，解压出来双击没反应。删不掉，但对你装机零用处 |
@@ -80,8 +85,7 @@
 | 层次 | 内容 | 在哪 | 多大 |
 |---|---|---|---|
 | 程序 | 安装器 / 启动器 / 面板 | **最新版页面的 3 个附件** | 共 26 MB |
-| 资源（离线） | torch、60 个依赖包、Python 3.12、28 个模型 | **[v1.6.1 页面的 5 个分卷](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)** | 共 7.22 GB |
-| 资源（在线） | 同上 | 双击 `SingAlong-Setup.exe` 后它自己上网取 | 约 3.6 GB |
+| 资源 | torch、60 个依赖包、Python 3.12、28 个模型 | **`part1`～`part5` 五个分卷** | 共 7.22 GB |
 
 - **资源为什么不跟新版本一起发**：① 模型跟面板版本无关，1.6.2 只修了一个 bug，没必要让所有人重下 7 GB；
   ② GitHub 单个附件上限 2 GB（torch 一个包 2.4 GB，所以切成两块），单版本容量也有限。
@@ -92,16 +96,8 @@
 
 ---
 
-#### 方式 A · 在线装机版（1 个文件，最省事）
-
-| 步骤 | 做什么 |
-|---|---|
-| 1️⃣ 下载 | 只下 **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB） |
-| 2️⃣ 双击 | **不用解压**，放桌面、放下载文件夹都行。双击后它自己上网取约 3.6 GB 环境和模型 |
-| 3️⃣ 等 | 25–50 分钟（看网速）。中途断了直接重跑，已下好的部分会续传 |
-
 <details>
-<summary>🐍 点开看：「我已经装过 Python 了，还要再装吗？」</summary>
+<summary>🐍 装之前先知道：我自己有 Python 了，还要再装吗？</summary>
 
 **要，但不会动你自己的 Python。**
 
@@ -118,7 +114,7 @@
 
 ---
 
-#### 方式 B · 离线安装包（6 个文件，断网也能装）
+#### 安装步骤（4 步，就这一种方式）
 
 | 步骤 | 做什么 |
 |---|---|
@@ -229,7 +225,7 @@ D:\跟唱安装包\
 
 </details>
 
-> ⚠️ **三种常见错法**（出现任一种，exe 就找不到离线资源，会退化成慢慢联网下载）：
+> ⚠️ **三种常见错法**（出现任一种，exe 就找不到离线资源，会改去 GitHub 现场下——**实测基本下不动**，装不成功）：
 > ① 6 个文件放在了不同文件夹；② 只解压了其中一部分 zip；③ 解压后多套了一层
 > （变成 `...\SingAlong-Offline-part1\payload\`）。
 >
@@ -257,11 +253,7 @@ D:\跟唱安装包\
 <summary>⌨️ 习惯命令行？一条命令下载（PowerShell / cmd 均可）</summary>
 
 ```powershell
-# 方式 A：在线装机版（17MB，永远指向最新版）
-curl.exe -L -o SingAlong-Setup.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe
-
-# 方式 B：离线安装包（exe + 5 个分卷，约 6.7GB，请先建好文件夹并 cd 进去）
-#   分卷体积大，固定指向 v1.6.1 那一份；以后面板/安装器更新不用重下这堆分卷
+# 下载 6 个文件（约 7.2 GB，请先建好文件夹并 cd 进去）
 curl.exe -L -o SingAlong-Setup.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe
 for ($i=1; $i -le 5; $i++) {
   curl.exe -L -o "SingAlong-Offline-part$i.zip" "https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part$i.zip"
@@ -287,7 +279,7 @@ for ($i=1; $i -le 5; $i++) { tar -xf "SingAlong-Offline-part$i.zip" }
 |---|---|
 | 面板右上角有徽章，显示 `v1.6.2` | 已是最新，什么都不用做 |
 | 面板右上角有徽章，显示 `↑ v1.6.x` | **点一下那个徽章** → 下载 487 KB 补丁 → 面板自己重启完成升级 |
-| **没有徽章**（`panel\VERSION` 不存在 = v1.6.0 或更早） | 这一版必须手动装**最后一次**：下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB）；或把 `SingAlong-Panel-1.6.2.zip` 解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`（487 KB）。装完这次之后，以后都能点一下升级 |
+| **没有徽章**（`panel\VERSION` 不存在 = v1.6.0 或更早） | 这一版必须手动装**最后一次**。**推荐只换面板**：先关掉面板窗口，把 `SingAlong-Panel-1.6.2.zip`（487 KB）解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`；或者按前面的 4 步重装一次（6 个文件）。装完这次之后，以后都能点一下升级 |
 
 > 更新只替换 `panel` 这一个目录。**你做的歌、分离结果、模型都在 `envs\uvr\models\`，一个都不动。**
 > 更新完在浏览器里按 **Ctrl+F5** 强刷一次，否则看到的还是旧界面。

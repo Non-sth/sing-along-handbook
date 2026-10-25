@@ -12,10 +12,9 @@ companion Android app as a karaoke practice book you can flip through anywhere.
 [![CUDA](https://img.shields.io/badge/CUDA-optional%20but%20recommended-76b900?style=flat-square&logo=nvidia&logoColor=white)](安装环境.md)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 
-**Have internet → download only this, double-click, wait:**
+**There is only one install path: download all 6 files below (7.2 GB) → same folder → unzip all 5 zips → double-click the exe.**
 **[⬇ `SingAlong-Setup.exe` (17 MB)](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
-
-**Offline → that exe + all 5 parts below (7.2 GB total, keep all 6 files in one folder):**
+**+ these 5:**
 [`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip)
 [`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip)
 [`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip)
@@ -75,26 +74,31 @@ variable speed — and your files never leave your computer.
 
 ### Windows — the easy way (recommended for non-developers)
 
-Both paths below end with **double-clicking the same installer exe**; they differ only in where the
-~3.6 GB of resources come from. Pick one on the [Releases](https://github.com/Non-sth/sing-along-handbook/releases) page.
+**Install path (only one): download 6 files → one folder → unzip all 5 zips → double-click the exe.**
 
-**Step 0 — which file do I download?**
+**Step 0 — the 6 files you need**
 
-| Your situation | Download | Unzip? |
+| File | Size | What it is |
 |---|---|---|
-| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17 MB) | no |
-| **No internet / very slow** | that exe + `part1`–`part5` (7.2 GB, links at the top of this page) | yes, all five zips |
+| `SingAlong-Setup.exe` | 17 MB | The installer itself (you double-click this) |
+| `part1` – `part5` | 7.2 GB total | Wheels + all 28 models (offline assets — **download all five, no picking**) |
+
+All 6 download links are **at the top of this page**.
 
 > Two other small files — `SingAlong-Panel-1.6.2.zip` (487 KB, panel only) and
-> `SingAlong-Launcher.exe` (8.9 MB, launcher only) — are **not needed by beginners**.
+> `SingAlong-Launcher.exe` (8.9 MB, launcher only) — are **not needed for a first install**.
 > See the collapsible section below when you need them.
+>
+> **Why isn't there a "just download the 17 MB exe and let it fetch everything" option?** Because that
+> pulls ~3.6 GB live from GitHub, which in practice often stalls or fails. **Downloading the 6 files is
+> simply more reliable**, so that route was removed from the docs.
 
 <details>
 <summary>❓ What are the 5 items on the release page? Why is everything only a few MB?</summary>
 
 | # | Item on the page | Suffix | Download? | What it is |
 |---|---|---|---|---|
-| 1 | `SingAlong-Setup.exe` (17.5 MB) | `.exe` | **yes** (most people only need this) | Full installer: sets up the environment, models and desktop icon |
+| 1 | `SingAlong-Setup.exe` (17.5 MB) | `.exe` | **yes** | Full installer: sets up the environment, models and desktop icon (also used by the offline route) |
 | 2 | `SingAlong-Panel-1.6.2.zip` (487 KB) | `.zip` | optional | Panel patch, 21 files: UI + scripts only |
 | 3 | `SingAlong-Launcher.exe` (8.9 MB) | `.exe` | optional | Launcher only — opens the panel, installs nothing |
 | 4 | `Source code (zip)` | `.zip` | **no** | **Source snapshot** GitHub generates automatically: plain text files of the whole repo. No exe, no models, no wheels — double-clicking does nothing. Cannot be deleted, and is useless for installing |
@@ -109,8 +113,7 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 | Layer | Content | Where | Size |
 |---|---|---|---|
 | Program | installer / launcher / panel | **the 3 assets on the latest release** | 26 MB |
-| Assets (offline) | torch, 60 wheels, Python 3.12, 28 models | **[the 5 parts on the v1.6.1 page](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)** | 7.22 GB |
-| Assets (online) | same | fetched by `SingAlong-Setup.exe` after you double-click | ~3.6 GB |
+| Assets | torch, 60 wheels, Python 3.12, 28 models | **the 5 `part` volumes** | 7.22 GB |
 
 - **Why assets are not re-released every version**: ① models are independent of the panel version — v1.6.2
   fixes one bug, no reason to make everyone re-download 7 GB; ② GitHub caps a single asset at 2 GB
@@ -120,16 +123,8 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 </details>
 
-#### Option A — Online installer (1 file only)
-
-| Step | Do this |
-|---|---|
-| 1️⃣ | Download **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)** (17 MB) only |
-| 2️⃣ | Put it **anywhere** (Desktop, Downloads…) — **nothing to unzip** |
-| 3️⃣ | **Double-click `SingAlong-Setup.exe`** → it downloads the Python env + AI components + ffmpeg + default model (~3.6 GB, 25–50 min, resumable) |
-
 <details>
-<summary>🐍 Click to expand: "I already have Python — do I still need this one?"</summary>
+<summary>🐍 Before you start: "I already have Python — do I still need this one?"</summary>
 
 > 🐍 **"I already have Python — do I still need this one?" Yes, but your own Python stays untouched**
 >
@@ -144,7 +139,7 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 > template, not an interpreter you are meant to write code with.**
 </details>
 
-#### Option B — Offline bundle (6 files, installs with no internet)
+#### Install steps (4 steps — the only route)
 
 
 | Step | Do this |
@@ -261,7 +256,8 @@ Everything is installed with `pip --no-index` from this folder, fully offline. T
 > **All 5 parts + 1 exe — six files, none optional** (download them over several sessions if you like,
 > just put the complete set in one folder).
 
-> ⚠️ **Three common mistakes** (each makes the installer fall back to a slow online download):
+> ⚠️ **Three common mistakes** (each makes the installer try to fetch everything from GitHub instead —
+> which usually fails, so the install never finishes):
 > ① the files are in different folders; ② only some of the zips were extracted; ③ extraction added an extra
 > level (`...\SingAlong-Offline-part1\payload\`). Quick self-check: **`payload` and the exe are
 > siblings**.
@@ -279,9 +275,10 @@ Look at the version badge in the panel header:
 > **your songs, separated stems and downloaded models are untouched**. Press Ctrl+F5 afterwards to
 > refresh the page.
 
-**Still on v1.6.0 or older?** That panel has no badge yet, so this version needs one manual install:
-run `SingAlong-Setup.exe` again (17.5 MB), or unzip `SingAlong-Panel-1.6.2.zip` over
-`%LOCALAPPDATA%\SingAlong\panel\` (487 KB). **After that you never have to do it again.**
+**Still on v1.6.0 or older?** That panel has no badge yet, so this version needs one manual step.
+**Easiest:** close the panel window, then unzip `SingAlong-Panel-1.6.2.zip` over
+`%LOCALAPPDATA%\SingAlong\panel\` (487 KB). Alternatively reinstall with the 6 files (4 steps above).
+**After that you never have to do it again.**
 
 <details>
 <summary>📂 Which files does the panel patch zip contain? (21 files, no wrapper folder)</summary>
