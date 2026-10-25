@@ -165,15 +165,17 @@ for ($i=1; $i -le 5; $i++) { tar -xf "SingAlong-Offline-part$i.zip" }
 
 | 徽章显示 | 含义 | 怎么做 |
 |---|---|---|
-| `v1.6.1` | 已是最新 | 不用管 |
+| `v1.6.2` | 已是最新 | 不用管 |
 | `↑ v1.6.x` | 有新版本 | 点一下 → 下载几百 KB 补丁 → 面板自动重启完成升级 |
 
 > 更新只替换面板程序本身（`%LOCALAPPDATA%\SingAlong\panel`），
 > **你做的歌、分离结果、下载的模型都不动**。更新完在浏览器里 Ctrl+F5 强刷一次。
 
 **你现在装的还是 v1.6.0 或更早？** 那个版的面板里还没有这个徽章，所以这一版要手动装一次：
-下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB），或者下 `SingAlong-Panel-1.6.1.zip`
-解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`（484 KB）。**装完就再也不用这样了。**
+下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB），或者下 `SingAlong-Panel-1.6.2.zip`
+解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`（486 KB）。**装完就再也不用这样了。**
+>
+> 每个文件具体放哪、放错会有什么症状、怎么判断自己是哪个版本，见 **[面板资源与升级指南.md](面板资源与升级指南.md)**。
 
 > 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去安装目录
 > （默认 `%LOCALAPPDATA%\SingAlong`）找到启动器 exe，双击照样能开。

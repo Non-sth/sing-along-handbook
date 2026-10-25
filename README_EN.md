@@ -152,7 +152,7 @@ Look at the version badge in the panel header:
 
 | Badge | Meaning | What to do |
 |---|---|---|
-| `v1.6.1` | Up to date | nothing |
+| `v1.6.2` | Up to date | nothing |
 | `↑ v1.6.x` | Update available | click it → a few hundred KB patch downloads → the panel restarts itself |
 
 > Only the panel files (`%LOCALAPPDATA%\SingAlong\panel`) are replaced —
@@ -160,8 +160,10 @@ Look at the version badge in the panel header:
 > refresh the page.
 
 **Still on v1.6.0 or older?** That panel has no badge yet, so this version needs one manual install:
-run `SingAlong-Setup.exe` again (17 MB), or unzip `SingAlong-Panel-1.6.1.zip` over
-`%LOCALAPPDATA%\SingAlong\panel\` (484 KB). **After that you never have to do it again.**
+run `SingAlong-Setup.exe` again (17 MB), or unzip `SingAlong-Panel-1.6.2.zip` over
+`%LOCALAPPDATA%\SingAlong\panel\` (486 KB). **After that you never have to do it again.**
+>
+> Step-by-step guide (Chinese): **[面板资源与升级指南.md](面板资源与升级指南.md)** — where each file goes, the symptom table, and a post-upgrade checklist.
 
 #### Two prompts you'll see either way
 
