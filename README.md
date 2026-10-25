@@ -43,38 +43,45 @@
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 | 只下 **`SingAlong-Setup-v1.6.exe`**（17 MB） |
+| 1️⃣ 下载 | 只下 **`SingAlong-Setup.exe`**（17 MB） |
 | 2️⃣ 放哪 | **放哪儿都行**（桌面、下载文件夹都可以），这个方式**不需要解压任何东西** |
-| 3️⃣ 双击 | **双击 `SingAlong-Setup-v1.6.exe`** → 它自己上网取 3.6GB 环境+模型（25–50 分钟，断了会续传） |
+| 3️⃣ 双击 | **双击 `SingAlong-Setup.exe`** → 它自己上网取 3.6GB 环境+模型（25–50 分钟，断了会续传） |
 
 > 适合网络稳定的人。全程只有一个文件要管，不容易出错。
 
 ---
 
-#### 方式 B · 离线安装包（下 3 个文件，断网也能装）
+#### 方式 B · 离线安装包（下 6 个文件，断网也能装）
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 3 个文件 | `SingAlong-Setup-v1.6.exe`（17 MB）+ `SingAlong-Offline-part1.zip`（1.81 GB）+ `SingAlong-Offline-part2.zip`（1.60 GB） |
-| 2️⃣ 全放进**同一个文件夹** | 比如新建 `D:\跟唱安装包\`，三个文件一个都不能少、不能分开放 |
-| 3️⃣ 解压到**当前文件夹** | 在**这个文件夹里**把两个 zip 都解压，目标是「解压到当前文件夹」，**不要**解压成 `SingAlong-Offline-part1\` 这种子文件夹 |
-| 4️⃣ 双击 exe | **双击 `SingAlong-Setup-v1.6.exe`** → 它看到旁边有 `payload\` 就全程本地安装，不联网 |
+| 1️⃣ 下载 6 个文件 | `SingAlong-Setup.exe`（17 MB）+ `SingAlong-Offline-part1.zip` ～ `part5.zip`（合计约 6.7 GB） |
+| 2️⃣ 全放进**同一个文件夹** | 比如新建 `D:\跟唱安装包\`，六个文件一个都不能少、不能分开放 |
+| 3️⃣ 解压到**当前文件夹** | 在**这个文件夹里**把 5 个 zip **全部**解压，目标是「解压到当前文件夹」，**不要**解压成 `SingAlong-Offline-part1\` 这种子文件夹 |
+| 4️⃣ 双击 exe | **双击 `SingAlong-Setup.exe`** → 它看到旁边有 `payload\` 就全程本地安装，不联网 |
 
 解压完，文件夹应该长这样（关键：**`payload` 和 exe 同级**）：
 
 ```
 D:\跟唱安装包\
-├─ SingAlong-Setup-v1.6.exe        ← 双击这个
-├─ SingAlong-Offline-part1.zip     （已解压，留着或删掉都行）
-├─ SingAlong-Offline-part2.zip     （同上）
-└─ payload\                        ← 两个 zip 解压出来的离线资源
+├─ SingAlong-Setup.exe              ← 双击这个
+├─ SingAlong-Offline-part1.zip      （已解压，留着或删掉都行）
+├─ SingAlong-Offline-part2.zip      （同上）
+├─ SingAlong-Offline-part3.zip      （同上）
+├─ SingAlong-Offline-part4.zip      （同上）
+├─ SingAlong-Offline-part5.zip      （同上）
+└─ payload\                          ← 5 个 zip 解压出来的离线资源
    ├─ python\   （Python 安装包）
    ├─ wheels\   （全部依赖，含切块的 torch 大包）
-   └─ models\   （默认人声分离模型）
+   └─ models\   （全部 28 个模型，约 4 GB）
 ```
 
+> 💡 **这版离线包把全部模型都打进去了**：BS-Roformer 全家（revive / resurrection / MelBand 两个版本）、
+> MDX-Net（Karaoke 2 / Inst HQ 3 / Kim Vocal 2）、VR 降噪（DeNoise / DeNoise-Lite / Reverb）、
+> Demucs 系列，合计 28 个。装完在「⑥ 模型库」里直接切换，不用再上网下模型。
+
 > ⚠️ **三种常见错法**（都会导致 exe 找不到离线资源、退化成慢慢联网下载）：
-> ① 三个文件放在了不同文件夹；② 只解压了其中一个 zip；③ 解压后多套了一层子文件夹
+> ① 六个文件放在了不同文件夹；② 只解压了其中一部分 zip；③ 解压后多套了一层子文件夹
 > （变成 `...\SingAlong-Offline-part1\payload\`）。
 >
 > 简单自检：**`payload` 文件夹和 exe 挨在一起**，就对了。
@@ -91,29 +98,46 @@ D:\跟唱安装包\
 **装完之后**：双击桌面**「跟唱练习器」** → 浏览器自动打开面板 → 点「① 工作流」拖一首歌进去。
 
 > 已经自己按 [安装环境.md](安装环境.md) 装好 Python 环境的人：不用再下 17MB 装机版，
-> 直接用 `SingAlong-Launcher-v1.6.exe`（9 MB，纯启动器）即可。
+> 直接用 `SingAlong-Launcher.exe`（9 MB，纯启动器）即可。
 
 <details>
 <summary>⌨️ 习惯命令行？一条命令下载（PowerShell / cmd 均可）</summary>
 
 ```powershell
-# 方式 A：在线装机版（17MB）
-curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
+# 方式 A：在线装机版（17MB，永远指向最新版）
+curl.exe -L -o SingAlong-Setup.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe
 
-# 方式 B：离线安装包（ exe + 2 个分卷，约 3.3GB，请先建好同一个文件夹并 cd 进去）
-curl.exe -L -o SingAlong-Setup-v1.6.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup-v1.6.exe
-curl.exe -L -o SingAlong-Offline-part1.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part1.zip
-curl.exe -L -o SingAlong-Offline-part2.zip https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Offline-part2.zip
+# 方式 B：离线安装包（exe + 5 个分卷，约 6.7GB，请先建好文件夹并 cd 进去）
+#   分卷体积大，固定指向 v1.6.1 那一份；以后面板/安装器更新不用重下这堆分卷
+curl.exe -L -o SingAlong-Setup.exe https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe
+for ($i=1; $i -le 5; $i++) {
+  curl.exe -L -o "SingAlong-Offline-part$i.zip" "https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part$i.zip"
+}
 
 # 解压全部分卷到当前文件夹（Windows 11 自带 tar）
-tar -xf SingAlong-Offline-part1.zip
-tar -xf SingAlong-Offline-part2.zip
+for ($i=1; $i -le 5; $i++) { tar -xf "SingAlong-Offline-part$i.zip" }
 
 # 运行装机程序
-.\SingAlong-Setup-v1.6.exe
+.\SingAlong-Setup.exe
 ```
 
 </details>
+
+---
+
+#### 已经装过旧版本？不用重装，点一下就升级
+
+打开面板后看右上角的**版本徽章**：
+
+| 徽章显示 | 含义 | 怎么做 |
+|---|---|---|
+| `v1.6.1` | 已是最新 | 不用管 |
+| `↑ v1.6.1` | 有新版本 | 点一下 → 下载 484 KB 补丁 → 面板自动重启完成升级 |
+
+> 更新只替换面板程序本身（`%LOCALAPPDATA%\SingAlong\panel`），
+> **你做的歌、分离结果、下载的模型都不动**。更新完在浏览器里 Ctrl+F5 强刷一次。
+>
+> 不想等自动更新，也可以重新下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB，同样不动你的数据）。
 
 > 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去安装目录
 > （默认 `%LOCALAPPDATA%\SingAlong`）找到启动器 exe，双击照样能开。

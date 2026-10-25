@@ -7,6 +7,42 @@
 
 ---
 
+## [仓库] v1.6.1：面板自更新 + 离线包携带全部模型（2026-10-25）
+
+### 新增
+
+- **面板内置「检查更新」**：启动 2 秒后静默查询公开仓最新 Release，有新版本时
+  右上角版本徽章变成 `↑ v1.6.1`；点一下下载数百 KB 的
+  `SingAlong-Panel-<版本>.zip`，面板自行退出 → 替换 → 重启。
+  - 版本号统一由 `panel/VERSION` 提供（读不到按 `0.0.0` 处理，只影响提示、不影响运行）。
+  - 替换由分离出来的 cmd 在面板退出后 `robocopy` 整目录进行；半途失败也能保住旧版本。
+    替换范围只有 `%LOCALAPPDATA%\SingAlong\panel`，**歌、分离产物、模型都在别的目录，不受影响**。
+  - 新增 `tools/launcher/make_panel_patch.py` 生成补丁包（本版 21 个文件 / 484 KB），
+    打包后自检 `scripts/` + `assets/` + `VERSION` 是否齐全，缺项直接拒绝出包。
+- **离线包改为携带全部模型**：`build_offline_payload.py` 新增 `--all-models`，
+  把开发机 `uvr/models` 下的 28 个权重 / 配置 / 参数库（约 4 GB）整体搬进 `payload/models`。
+  离线用户装完即可在「⑥ 模型库」切换任意模型，不用再联网下权重
+  （这些权重分散在 HuggingFace 与 raw.githubusercontent，国内直连基本不可用）。
+  离线分卷因此由 2 个（3.5 GB）增至 5 个（6.9 GB），单卷仍 < 1.85 GB。
+
+### 变更
+
+- **发布方式改为分层**：安装器（17 MB）与启动器（8.5 MB）随版本重打，内嵌整份 panel；
+  离线资源包只含 wheels/模型、与面板版本无关，长期固定在 v1.6.1 这一份，避免每次小修重传数 GB。
+- 附件改用**不带版本号**的名字（`SingAlong-Setup.exe` / `SingAlong-Launcher.exe`），
+  README 指向 `releases/latest/download/...`，以后版本更替不会再出现「链接 404」。
+- 附带修正：payload wheelhouse 里 torch 大包「原文件 + 分片」同时存在、重复占位 1.9 GB。
+
+### 验证
+
+- 两个 exe 内嵌 panel 与仓库源码**逐字节比对**：`serve_separator.py` / `separate_worker.py` /
+  `separator_panel.html` / `karaoke_page_template.html` / `VERSION` 全部一致（VERSION=1.6.1）。
+- 面板接口实测：`/api/update/check` 返回 `current=1.6.1`、`latest=1.6`、`has_update=false`；
+  无新版时点徽章弹「已是最新版本（v1.6.1）」；目标版本没有补丁包时 `apply` 返回 400 并说明原因。
+- 离线包：模型 28 个 / 4010 MB；分卷 5 个 / 合计 6893 MB。
+
+---
+
 ## [仓库] 跟唱页：染色进度整盘重算——修复「关掉染色再打开整页全红、唱到哪句才灰→红」（2026-10-25）
 
 ### 修复

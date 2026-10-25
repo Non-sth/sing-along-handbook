@@ -72,36 +72,56 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Step | Do this |
 |---|---|
-| 1️⃣ | Download **`SingAlong-Setup-v1.6.exe`** (17 MB) only |
+| 1️⃣ | Download **`SingAlong-Setup.exe`** (17 MB) only |
 | 2️⃣ | Put it **anywhere** (Desktop, Downloads…) — **nothing to unzip** |
-| 3️⃣ | **Double-click `SingAlong-Setup-v1.6.exe`** → it downloads the Python env + AI components + ffmpeg + default model (~3.6 GB, 25–50 min, resumable) |
+| 3️⃣ | **Double-click `SingAlong-Setup.exe`** → it downloads the Python env + AI components + ffmpeg + default model (~3.6 GB, 25–50 min, resumable) |
 
-#### Option B — Offline bundle (3 files, installs with no internet)
+#### Option B — Offline bundle (6 files, installs with no internet)
 
 | Step | Do this |
 |---|---|
-| 1️⃣ | Download all three: `SingAlong-Setup-v1.6.exe` (17 MB) + `SingAlong-Offline-part1.zip` (1.81 GB) + `SingAlong-Offline-part2.zip` (1.60 GB) |
-| 2️⃣ | Put **all three in the same folder**, e.g. `D:\singalong-setup\` — do not split them up |
-| 3️⃣ | Inside that folder, extract **both** zips **into the current folder** (do **not** extract into a `SingAlong-Offline-part1\` subfolder) |
-| 4️⃣ | **Double-click `SingAlong-Setup-v1.6.exe`** → seeing `payload\` next to it, it installs entirely offline |
+| 1️⃣ | Download all six: `SingAlong-Setup.exe` (17 MB) + `SingAlong-Offline-part1.zip` … `part5.zip` (~6.7 GB total) |
+| 2️⃣ | Put **all six in the same folder**, e.g. `D:\singalong-setup\` — do not split them up |
+| 3️⃣ | Inside that folder, extract **all five** zips **into the current folder** (do **not** extract into a `SingAlong-Offline-part1\` subfolder) |
+| 4️⃣ | **Double-click `SingAlong-Setup.exe`** → seeing `payload\` next to it, it installs entirely offline |
 
 The folder must look like this — key point: **`payload` sits next to the exe**.
 
 ```
 D:\singalong-setup\
-├─ SingAlong-Setup-v1.6.exe        ← double-click this one
-├─ SingAlong-Offline-part1.zip     (already extracted; keep or delete)
-├─ SingAlong-Offline-part2.zip     (same)
-└─ payload\                        ← extracted offline resources
+├─ SingAlong-Setup.exe              ← double-click this one
+├─ SingAlong-Offline-part1.zip      (already extracted; keep or delete)
+├─ SingAlong-Offline-part2.zip      (same)
+├─ SingAlong-Offline-part3.zip      (same)
+├─ SingAlong-Offline-part4.zip      (same)
+├─ SingAlong-Offline-part5.zip      (same)
+└─ payload\                          ← extracted offline resources
    ├─ python\   (Python installer)
    ├─ wheels\   (all deps, incl. the chunked torch wheel)
-   └─ models\   (default vocal-separation model)
+   └─ models\   (all 28 models, ~4 GB)
 ```
 
+> 💡 **This bundle ships every model** — BS-Roformer (revive / resurrection / both MelBand variants),
+> MDX-Net (Karaoke 2 / Inst HQ 3 / Kim Vocal 2), VR denoise (DeNoise / DeNoise-Lite / Reverb) and the
+> Demucs set, 28 files in total. Switch between them in tab ⑥ without downloading anything else.
+
 > ⚠️ **Three common mistakes** (each makes the installer fall back to a slow online download):
-> ① the files are in different folders; ② only one zip was extracted; ③ extraction added an extra
+> ① the files are in different folders; ② only some of the zips were extracted; ③ extraction added an extra
 > level (`...\SingAlong-Offline-part1\payload\`). Quick self-check: **`payload` and the exe are
 > siblings**.
+
+#### Already installed an older build? One click upgrades it
+
+Look at the version badge in the panel header:
+
+| Badge | Meaning | What to do |
+|---|---|---|
+| `v1.6.1` | Up to date | nothing |
+| `↑ v1.6.1` | Update available | click it → 484 KB patch downloads → the panel restarts itself |
+
+> Only the panel files (`%LOCALAPPDATA%\SingAlong\panel`) are replaced —
+> **your songs, separated stems and downloaded models are untouched**. Press Ctrl+F5 afterwards to
+> refresh the page.
 
 #### Two prompts you'll see either way
 
@@ -111,7 +131,7 @@ D:\singalong-setup\
 Then double-click the desktop **「跟唱练习器」** icon → the panel opens in your browser →
 open tab ① Workflow and drag a song in.
 
-Already set up the Python environment yourself? Use the smaller `SingAlong-Launcher-v1.6.exe`
+Already set up the Python environment yourself? Use the smaller `SingAlong-Launcher.exe`
 (launcher only, 9 MB) instead.
 
 > Moved the exe or lost the shortcut? No problem — everything lives in
