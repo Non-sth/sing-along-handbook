@@ -87,6 +87,22 @@ D:\跟唱安装包\
 > torch 有 2.4 GB，超过 GitHub 单个附件 2 GB 的上限，所以打包时被切成了两块，
 > 安装器要先把它拼回一个完整文件再装。看到这句就等它，别关窗口。
 
+##### 📦 5 个分卷分别装的是什么
+
+| 分卷 | 下载体积 | 里面装的东西 |
+|---|---|---|
+| `part1` | 1.81 GB | **torch 主程序包的前一半**（1850 MB 切块）。torch 整个 2.4 GB，超过 GitHub 单个附件 2 GB 上限，只能切成两块分开装 |
+| `part2` | 1.47 GB | **MelBand Roformer v2 分离模型**（1502 MB）——分离质量最高的那一档 |
+| `part3` | 1.47 GB | **MelBand Roformer 另一版权重**（871 MB）+ **torch 的后一半**（632 MB） |
+| `part4` | 1.78 GB | **13 个模型 + onnxruntime-gpu**：默认模型 `bs_roformer_revive`（610 MB）、`BS-Roformer-Resurrection`（195 MB）、`UVR-DeNoise`（121 MB）、Demucs 五个（各 80 MB）、MDX-Net 与降噪音色四个 onnx；外加 onnxruntime-gpu 1.22（205 MB，显卡加速用） |
+| `part5` | 208 MB | **Python 3.12 安装包**（26 MB）+ **其余 59 个依赖 wheel**（scipy、llvmlite、imageio-ffmpeg 等）+ **13 个模型小文件**（yaml 配置、下载清单 json） |
+
+> ⚠️ **分卷是按体积机械切的，不是按功能分的，不能只挑几个下。**
+> `part1` 和 `part3` 里装的是**同一个 torch 包的两半**，缺任何一半 pip 都会报
+> `is not a valid wheel filename` 直接失败；`part4` 缺了没模型可分离，`part5` 缺了连
+> Python 和依赖都装不上。**5 个分卷 + 1 个 exe，六个文件一个都不能少**
+> （可以分几次下完，最后凑齐放同一个文件夹就行）。
+
 > ⚠️ **三种常见错法**（都会导致 exe 找不到离线资源、退化成慢慢联网下载）：
 > ① 六个文件放在了不同文件夹；② 只解压了其中一部分 zip；③ 解压后多套了一层子文件夹
 > （变成 `...\SingAlong-Offline-part1\payload\`）。

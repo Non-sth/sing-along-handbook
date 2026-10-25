@@ -112,6 +112,23 @@ D:\singalong-setup\
 > The torch wheel is 2.4 GB, above GitHub's 2 GB per-asset limit, so it ships as two chunks and the
 > installer joins them back into one file first. Just wait; don't close the window.
 
+##### 📦 What each of the 5 parts contains
+
+| Part | Download size | What's inside |
+|---|---|---|
+| `part1` | 1.81 GB | **First half of the torch wheel** (1850 MB chunk). torch is 2.4 GB, above GitHub's 2 GB per-asset cap, so it ships as two halves |
+| `part2` | 1.47 GB | **MelBand Roformer v2 separation model** (1502 MB) — the highest-quality tier |
+| `part3` | 1.47 GB | **The other MelBand Roformer checkpoint** (871 MB) + **second half of the torch wheel** (632 MB) |
+| `part4` | 1.78 GB | **13 models + onnxruntime-gpu**: the default `bs_roformer_revive` (610 MB), `BS-Roformer-Resurrection` (195 MB), `UVR-DeNoise` (121 MB), five Demucs checkpoints (80 MB each), four MDX-Net / denoise onnx models; plus onnxruntime-gpu 1.22 (205 MB, GPU acceleration) |
+| `part5` | 208 MB | **Python 3.12 installer** (26 MB) + **the remaining 59 dependency wheels** (scipy, llvmlite, imageio-ffmpeg…) + **13 small model files** (yaml configs, download manifests) |
+
+> ⚠️ **The parts are split by size, not by feature — you cannot skip any of them.**
+> `part1` and `part3` hold **the two halves of one torch wheel**; with either half missing pip fails
+> outright with `is not a valid wheel filename`. Without `part4` there is no model to separate with,
+> and without `part5` neither Python nor the dependencies can be installed.
+> **All 5 parts + 1 exe — six files, none optional** (download them over several sessions if you like,
+> just put the complete set in one folder).
+
 > ⚠️ **Three common mistakes** (each makes the installer fall back to a slow online download):
 > ① the files are in different folders; ② only some of the zips were extracted; ③ extraction added an extra
 > level (`...\SingAlong-Offline-part1\payload\`). Quick self-check: **`payload` and the exe are
