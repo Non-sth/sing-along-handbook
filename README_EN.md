@@ -81,6 +81,18 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 #### Option B — Offline bundle (6 files, installs with no internet)
 
+> 🐍 **"I already have Python — do I still need this one?" Yes, but your own Python stays untouched**
+>
+> The installer only uses your system Python as a **template** to create a **private virtualenv**
+> (`%LOCALAPPDATA%\SingAlong\envs\uvr`). torch, audio-separator and onnxruntime all go into that
+> venv — nothing is installed into your own Python, and no admin rights are needed.
+>
+> The one hard requirement is **3.12**: it looks for a 3.12 first and silently installs one (per-user)
+> if there is none. Having 3.13 / 3.14 does not help — the AI components only ship prebuilt wheels for
+> 3.12. If you already have another Python, the installer **leaves your PATH and your default `python`
+> command alone**. That is exactly what the Python 3.12 installer inside `part5` is for: **it is a
+> template, not an interpreter you are meant to write code with.**
+
 | Step | Do this |
 |---|---|
 | 1️⃣ | Download all six: [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe) (17 MB) + [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) … [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip) (~6.7 GB total) |
