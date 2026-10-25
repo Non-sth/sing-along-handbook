@@ -107,6 +107,10 @@ D:\singalong-setup\
 > 💡 **This bundle ships every model** — BS-Roformer (revive / resurrection / both MelBand variants),
 > MDX-Net (Karaoke 2 / Inst HQ 3 / Kim Vocal 2), VR denoise (DeNoise / DeNoise-Lite / Reverb) and the
 > Demucs set, 28 files in total. Switch between them in tab ⑥ without downloading anything else.
+>
+> ⏳ **If the exe pauses for ~30 s right after you double-click, printing “合并离线大包 torch…” — it is not stuck.**
+> The torch wheel is 2.4 GB, above GitHub's 2 GB per-asset limit, so it ships as two chunks and the
+> installer joins them back into one file first. Just wait; don't close the window.
 
 > ⚠️ **Three common mistakes** (each makes the installer fall back to a slow online download):
 > ① the files are in different folders; ② only some of the zips were extracted; ③ extraction added an extra
