@@ -12,6 +12,9 @@ companion Android app as a karaoke practice book you can flip through anywhere.
 [![CUDA](https://img.shields.io/badge/CUDA-optional%20but%20recommended-76b900?style=flat-square&logo=nvidia&logoColor=white)](安装环境.md)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 
+**[⬇ Download `SingAlong-Setup.exe` (17 MB — always the latest build)](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
+　·　[Offline bundle (6 files, installs offline)](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)
+
 > 🌐 The panel UI has a **Chinese/English toggle** (top-right 🌐 button).
 
 ---
@@ -72,7 +75,7 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Step | Do this |
 |---|---|
-| 1️⃣ | Download **`SingAlong-Setup.exe`** (17 MB) only |
+| 1️⃣ | Download **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)** (17 MB) only |
 | 2️⃣ | Put it **anywhere** (Desktop, Downloads…) — **nothing to unzip** |
 | 3️⃣ | **Double-click `SingAlong-Setup.exe`** → it downloads the Python env + AI components + ffmpeg + default model (~3.6 GB, 25–50 min, resumable) |
 
@@ -80,7 +83,7 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Step | Do this |
 |---|---|
-| 1️⃣ | Download all six: `SingAlong-Setup.exe` (17 MB) + `SingAlong-Offline-part1.zip` … `part5.zip` (~6.7 GB total) |
+| 1️⃣ | Download all six: [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe) (17 MB) + [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) … [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip) (~6.7 GB total) |
 | 2️⃣ | Put **all six in the same folder**, e.g. `D:\singalong-setup\` — do not split them up |
 | 3️⃣ | Inside that folder, extract **all five** zips **into the current folder** (do **not** extract into a `SingAlong-Offline-part1\` subfolder) |
 | 4️⃣ | **Double-click `SingAlong-Setup.exe`** → seeing `payload\` next to it, it installs entirely offline |

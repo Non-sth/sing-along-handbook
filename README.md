@@ -20,6 +20,9 @@
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 [![Agent Ready](https://img.shields.io/badge/AI%20agent-ready-8a2be2?style=flat-square)](AGENTS.md)
 
+**[⬇ 直接下载 `SingAlong-Setup.exe`（17 MB，永远是最新版）](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
+　·　[离线包（6 个文件，断网也能装）](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)
+
 <img src="docs/screenshot-library.png" width="220" alt="曲库列表">
 <img src="docs/screenshot-practice.png" width="220" alt="跟唱页">
 <img src="docs/screenshot-home.png" width="220" alt="桌面图标">
@@ -43,7 +46,7 @@
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 | 只下 **`SingAlong-Setup.exe`**（17 MB） |
+| 1️⃣ 下载 | 只下 **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB） |
 | 2️⃣ 放哪 | **放哪儿都行**（桌面、下载文件夹都可以），这个方式**不需要解压任何东西** |
 | 3️⃣ 双击 | **双击 `SingAlong-Setup.exe`** → 它自己上网取 3.6GB 环境+模型（25–50 分钟，断了会续传） |
 
@@ -55,7 +58,7 @@
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 6 个文件 | `SingAlong-Setup.exe`（17 MB）+ `SingAlong-Offline-part1.zip` ～ `part5.zip`（合计约 6.7 GB） |
+| 1️⃣ 下载 6 个文件 | [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)（17 MB）+ [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) ～ [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)（合计约 6.7 GB） |
 | 2️⃣ 全放进**同一个文件夹** | 比如新建 `D:\跟唱安装包\`，六个文件一个都不能少、不能分开放 |
 | 3️⃣ 解压到**当前文件夹** | 在**这个文件夹里**把 5 个 zip **全部**解压，目标是「解压到当前文件夹」，**不要**解压成 `SingAlong-Offline-part1\` 这种子文件夹 |
 | 4️⃣ 双击 exe | **双击 `SingAlong-Setup.exe`** → 它看到旁边有 `payload\` 就全程本地安装，不联网 |
