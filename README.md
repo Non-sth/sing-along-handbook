@@ -36,69 +36,70 @@
 **「面板」是什么？** 就是一个网页。你双击一个图标，浏览器自动打开一个页面，
 往里面拖歌、点按钮，完事。它不联网上传任何东西，跑在你自己电脑上。
 
-### Windows：三步装好
+### Windows：只需要三件事——下对文件 → 双击 → 等它装完
 
-先在 [Releases 页面](https://github.com/Non-sth/sing-along-handbook/releases) 选一种方式。两种方式**最后都是双击同一个 exe**，区别只在「资源从哪来」。
+#### 第 0 步：我该下哪个文件？（只看这一张表）
+
+| 你的情况 | 下哪些文件 | 要解压吗 |
+|---|---|---|
+| **能上网**（推荐走这条） | 只下 **`SingAlong-Setup.exe`**（17 MB） | 不用 |
+| **不能上网 / 网太慢** | `SingAlong-Setup.exe` + `part1`～`part5`（合计约 6.9 GB） | 5 个 zip 全部要解压 |
+
+> 发布页上另外 2 个 `Source code (zip)` / `Source code (tar.gz)` 是 GitHub 给每个版本自动生成的
+> **源码快照**，跟安装完全无关——**不用下，也不影响使用**。
 
 ---
 
-#### 方式 A · 在线装机版（只下 1 个文件）
+#### 方式 A · 在线装机版（1 个文件，最省事）
 
 | 步骤 | 做什么 |
 |---|---|
 | 1️⃣ 下载 | 只下 **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB） |
-| 2️⃣ 放哪 | **放哪儿都行**（桌面、下载文件夹都可以），这个方式**不需要解压任何东西** |
-| 3️⃣ 双击 | **双击 `SingAlong-Setup.exe`** → 它自己上网取 3.6GB 环境+模型（25–50 分钟，断了会续传） |
+| 2️⃣ 双击 | **不用解压**，放桌面、放下载文件夹都行。双击后它自己上网取约 3.6 GB 环境和模型 |
+| 3️⃣ 等 | 25–50 分钟（看网速）。中途断了直接重跑，已下好的部分会续传 |
 
-> 适合网络稳定的人。全程只有一个文件要管，不容易出错。
+<details>
+<summary>🐍 点开看：「我已经装过 Python 了，还要再装吗？」</summary>
 
-> 🐍 **「我已经装过 Python 了，还要再装吗？」要，但不会动你自己的 Python**
->
-> 安装器只把你系统里的 Python 当「母版」，用它建一个**独立环境**
-> （`%LOCALAPPDATA%\SingAlong\envs\uvr`），torch、audio-separator、onnxruntime 全都装进那个环境，
-> 你自己 Python 里装的包一个都不会变，也不需要管理员权限。
->
-> 唯一硬要求是 **3.12**：安装器优先找系统里的 3.12，找不到就静默装一个（用户级）。
-> 你有 3.13 / 3.14 也一样要装 3.12 —— AI 组件只有 3.12 的预编译包，别的版本装不上、或者要现场编译。
-> 若你本来就有别的 Python，安装器**不会改你的 PATH，也不会顶掉你的默认 `python` 命令**。
-> 离线包 `part5` 里那个 Python 3.12 就是干这个用的：**它是「母版」，不是让你拿它写代码。**
+**要，但不会动你自己的 Python。**
+
+安装器只把你系统里的 Python 当**母版**，用它建一个独立环境
+`%LOCALAPPDATA%\SingAlong\envs\uvr`。torch、audio-separator、onnxruntime 全都装进那个环境，
+你自己 Python 里装的包一个都不会变，也不需要管理员权限。
+
+- 唯一硬要求是 **3.12**：优先用系统里现成的 3.12，找不到就静默装一个（用户级）。
+- 你装的是 3.13 / 3.14 也一样要装 3.12 —— AI 组件只有 3.12 的预编译包，别的版本装不上。
+- 你本来就有别的 Python 时，安装器**不改你的 PATH，也不顶掉你的默认 `python` 命令**。
+- 离线包 `part5` 里那个 Python 3.12 就是当母版用的，**不是让你拿它写代码**。
+
+</details>
 
 ---
 
-#### 方式 B · 离线安装包（下 6 个文件，断网也能装）
+#### 方式 B · 离线安装包（6 个文件，断网也能装）
 
 | 步骤 | 做什么 |
 |---|---|
-| 1️⃣ 下载 6 个文件 | [`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)（17 MB）+ [`SingAlong-Offline-part1.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) ～ [`part5.zip`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)（合计约 6.7 GB） |
-| 2️⃣ 全放进**同一个文件夹** | 比如新建 `D:\跟唱安装包\`，六个文件一个都不能少、不能分开放 |
-| 3️⃣ 解压到**当前文件夹** | 在**这个文件夹里**把 5 个 zip **全部**解压，目标是「解压到当前文件夹」，**不要**解压成 `SingAlong-Offline-part1\` 这种子文件夹 |
-| 4️⃣ 双击 exe | **双击 `SingAlong-Setup.exe`** → 它看到旁边有 `payload\` 就全程本地安装，不联网 |
+| 1️⃣ 下载 6 个 | **[`SingAlong-Setup.exe`](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**（17 MB）+ [`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip) · [`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip) · [`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip) · [`part4`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part4.zip) · [`part5`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)（合计约 6.9 GB） |
+| 2️⃣ 放一起 | 6 个文件**全放进同一个文件夹**，例：新建 `D://跟唱安装包//`。不能分开放 |
+| 3️⃣ 解压 | 在**这个文件夹里**把 5 个 zip **全部**「解压到当前文件夹」。别解压成 `part1\` 这种子文件夹 |
+| 4️⃣ 双击 | 双击 `SingAlong-Setup.exe`。它看到旁边有 `payload\` 就全程本地安装，**不联网** |
 
-解压完，文件夹应该长这样（关键：**`payload` 和 exe 同级**）：
+解压完，文件夹必须是这个样子（关键就一条：**`payload` 和 exe 挨在一起**）：
 
 ```
-D:\跟唱安装包\
-├─ SingAlong-Setup.exe              ← 双击这个
-├─ SingAlong-Offline-part1.zip      （已解压，留着或删掉都行）
-├─ SingAlong-Offline-part2.zip      （同上）
-├─ SingAlong-Offline-part3.zip      （同上）
-├─ SingAlong-Offline-part4.zip      （同上）
-├─ SingAlong-Offline-part5.zip      （同上）
-└─ payload\                          ← 5 个 zip 解压出来的离线资源
-   ├─ python\   （Python 安装包）
-   ├─ wheels\   （全部依赖，含切块的 torch 大包）
-   └─ models\   （全部 28 个模型，约 4 GB）
+D://跟唱安装包//
+├─ SingAlong-Setup.exe                      ← 双击这个（5 个 zip 解压完，留着或删掉都行）
+├─ SingAlong-Offline-part1.zip ～ part5.zip
+└─ payload\                                  ← 5 个 zip 解压出来的离线资源
+   ├─ python\          （Python 3.12 安装包，1 个文件，26 MB）
+   ├─ wheels\          （全部依赖 wheel，62 个文件，含切成两块的 torch 2.4 GB）
+   ├─ models\          （全部 28 个模型，约 4 GB）
+   └─ cuda_bootstrap\  （显卡加速的 DLL 引导，2 个文件）
 ```
 
-> 💡 **这版离线包把全部模型都打进去了**：BS-Roformer 全家（revive / resurrection / MelBand 两个版本）、
-> MDX-Net（Karaoke 2 / Inst HQ 3 / Kim Vocal 2）、VR 降噪（DeNoise / DeNoise-Lite / Reverb）、
-> Demucs 系列，合计 28 个。装完在「⑥ 模型库」里直接切换，不用再上网下模型。
->
-> ⏳ **双击 exe 后如果先停半分钟、只打印一行「合并离线大包 torch…」——不是卡住**：
-> torch 有 2.4 GB，超过 GitHub 单个附件 2 GB 的上限，所以打包时被切成了两块，
-> 安装器要先把它拼回一个完整文件再装。看到这句就等它，别关窗口。
-
-##### 📦 5 个分卷分别装的是什么
+<details>
+<summary>📦 点开看：5 个分卷分别装的是什么</summary>
 
 | 分卷 | 下载体积 | 里面装的东西 |
 |---|---|---|
@@ -114,11 +115,17 @@ D:\跟唱安装包\
 > Python 和依赖都装不上。**5 个分卷 + 1 个 exe，六个文件一个都不能少**
 > （可以分几次下完，最后凑齐放同一个文件夹就行）。
 
-> ⚠️ **三种常见错法**（都会导致 exe 找不到离线资源、退化成慢慢联网下载）：
-> ① 六个文件放在了不同文件夹；② 只解压了其中一部分 zip；③ 解压后多套了一层子文件夹
+</details>
+
+> ⚠️ **三种常见错法**（出现任一种，exe 就找不到离线资源，会退化成慢慢联网下载）：
+> ① 6 个文件放在了不同文件夹；② 只解压了其中一部分 zip；③ 解压后多套了一层
 > （变成 `...\SingAlong-Offline-part1\payload\`）。
 >
-> 简单自检：**`payload` 文件夹和 exe 挨在一起**，就对了。
+> **自检一句话：打开文件夹，`payload` 和 `SingAlong-Setup.exe` 在同一层，就对了。**
+
+> ⏳ **双击后先停半分钟、只打印一行「合并离线大包 torch…」——不是卡住。**
+> torch 有 2.4 GB，超过 GitHub 单个附件 2 GB 上限，打包时被切成两块，安装器要先拼回一个完整文件。
+> 看到这句就等它，别关窗口。
 
 ---
 
@@ -159,26 +166,24 @@ for ($i=1; $i -le 5; $i++) { tar -xf "SingAlong-Offline-part$i.zip" }
 
 ---
 
-#### 已经装了 v1.6.1 之后：不用重装，点一下就升级
+#### 已经装了旧版本？按「你现在是哪一版」对号入座
 
-打开面板后看右上角的**版本徽章**：
+**先看一件事**：打开 `%LOCALAPPDATA%\SingAlong\panel\`，**有没有 `VERSION` 这个文件**。
+有 → 你装的是 v1.6.1 或更新；没有 → 你装的是 v1.6.0 或更早。
 
-| 徽章显示 | 含义 | 怎么做 |
-|---|---|---|
-| `v1.6.2` | 已是最新 | 不用管 |
-| `↑ v1.6.x` | 有新版本 | 点一下 → 下载几百 KB 补丁 → 面板自动重启完成升级 |
+| 你的情况 | 怎么做 |
+|---|---|
+| 面板右上角有徽章，显示 `v1.6.2` | 已是最新，什么都不用做 |
+| 面板右上角有徽章，显示 `↑ v1.6.x` | **点一下那个徽章** → 下载 487 KB 补丁 → 面板自己重启完成升级 |
+| **没有徽章**（`panel\VERSION` 不存在 = v1.6.0 或更早） | 这一版必须手动装**最后一次**：下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB）；或把 `SingAlong-Panel-1.6.2.zip` 解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`（487 KB）。装完这次之后，以后都能点一下升级 |
 
-> 更新只替换面板程序本身（`%LOCALAPPDATA%\SingAlong\panel`），
-> **你做的歌、分离结果、下载的模型都不动**。更新完在浏览器里 Ctrl+F5 强刷一次。
+> 更新只替换 `panel` 这一个目录。**你做的歌、分离结果、模型都在 `envs\uvr\models\`，一个都不动。**
+> 更新完在浏览器里按 **Ctrl+F5** 强刷一次，否则看到的还是旧界面。
 
-**你现在装的还是 v1.6.0 或更早？** 那个版的面板里还没有这个徽章，所以这一版要手动装一次：
-下 `SingAlong-Setup.exe` 双击覆盖安装（17 MB），或者下 `SingAlong-Panel-1.6.2.zip`
-解压覆盖到 `%LOCALAPPDATA%\SingAlong\panel\`（486 KB）。**装完就再也不用这样了。**
->
-> 每个文件具体放哪、放错会有什么症状、怎么判断自己是哪个版本，见 **[面板资源与升级指南.md](面板资源与升级指南.md)**。
+> 每个文件具体放在哪、放错会有什么症状，见 **[面板资源与升级指南.md](面板资源与升级指南.md)**。
 
-> 手滑删了桌面图标 / 把 exe 挪了位置？没关系——去安装目录
-> （默认 `%LOCALAPPDATA%\SingAlong`）找到启动器 exe，双击照样能开。
+> 手滑删了桌面图标 / 把 exe 挪了位置？去 `%LOCALAPPDATA%\SingAlong\跟唱练习器.exe` 双击照样能开。
+> 那个 exe 也没了，就下一个 `SingAlong-Launcher.exe`（8.9 MB）放进同一个目录，再双击。
 
 ### macOS：能用，但没有一键安装包
 

@@ -71,6 +71,16 @@ variable speed — and your files never leave your computer.
 Both paths below end with **double-clicking the same installer exe**; they differ only in where the
 ~3.6 GB of resources come from. Pick one on the [Releases](https://github.com/Non-sth/sing-along-handbook/releases) page.
 
+**Step 0 — which file do I download?**
+
+| Your situation | Download | Unzip? |
+|---|---|---|
+| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17 MB) | no |
+| **No internet / very slow** | `SingAlong-Setup.exe` + `part1`–`part5` (~6.9 GB) | yes, all five zips |
+
+> The two extra `Source code (zip)` / `Source code (tar.gz)` entries on the release page are
+> **auto-generated source snapshots** — nothing to do with installing. **Don't download them.**
+
 #### Option A — Online installer (1 file only)
 
 | Step | Do this |
@@ -79,7 +89,8 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 | 2️⃣ | Put it **anywhere** (Desktop, Downloads…) — **nothing to unzip** |
 | 3️⃣ | **Double-click `SingAlong-Setup.exe`** → it downloads the Python env + AI components + ffmpeg + default model (~3.6 GB, 25–50 min, resumable) |
 
-#### Option B — Offline bundle (6 files, installs with no internet)
+<details>
+<summary>🐍 Click to expand: "I already have Python — do I still need this one?"</summary>
 
 > 🐍 **"I already have Python — do I still need this one?" Yes, but your own Python stays untouched**
 >
@@ -92,6 +103,10 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 > 3.12. If you already have another Python, the installer **leaves your PATH and your default `python`
 > command alone**. That is exactly what the Python 3.12 installer inside `part5` is for: **it is a
 > template, not an interpreter you are meant to write code with.**
+</details>
+
+#### Option B — Offline bundle (6 files, installs with no internet)
+
 
 | Step | Do this |
 |---|---|
