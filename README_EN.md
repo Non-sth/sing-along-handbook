@@ -110,18 +110,22 @@ D:\singalong-setup\
 > level (`...\SingAlong-Offline-part1\payload\`). Quick self-check: **`payload` and the exe are
 > siblings**.
 
-#### Already installed an older build? One click upgrades it
+#### On v1.6.1 or later? One click upgrades it
 
 Look at the version badge in the panel header:
 
 | Badge | Meaning | What to do |
 |---|---|---|
 | `v1.6.1` | Up to date | nothing |
-| `↑ v1.6.1` | Update available | click it → 484 KB patch downloads → the panel restarts itself |
+| `↑ v1.6.x` | Update available | click it → a few hundred KB patch downloads → the panel restarts itself |
 
 > Only the panel files (`%LOCALAPPDATA%\SingAlong\panel`) are replaced —
 > **your songs, separated stems and downloaded models are untouched**. Press Ctrl+F5 afterwards to
 > refresh the page.
+
+**Still on v1.6.0 or older?** That panel has no badge yet, so this version needs one manual install:
+run `SingAlong-Setup.exe` again (17 MB), or unzip `SingAlong-Panel-1.6.1.zip` over
+`%LOCALAPPDATA%\SingAlong\panel\` (484 KB). **After that you never have to do it again.**
 
 #### Two prompts you'll see either way
 
