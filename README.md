@@ -20,8 +20,15 @@
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 [![Agent Ready](https://img.shields.io/badge/AI%20agent-ready-8a2be2?style=flat-square)](AGENTS.md)
 
-**[⬇ 直接下载 `SingAlong-Setup.exe`（17 MB，永远是最新版）](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
-　·　[离线包（6 个文件，断网也能装）](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)
+**能上网 → 只下这一个，双击，等它装完：**
+**[⬇ `SingAlong-Setup.exe`（17 MB）](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
+
+**断网 → 上面那个 exe + 下面 5 个全下（共 7.2 GB，6 个文件放同一文件夹）：**
+[`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip)
+[`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip)
+[`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip)
+[`part4`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part4.zip)
+[`part5`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)
 
 <img src="docs/screenshot-library.png" width="220" alt="曲库列表">
 <img src="docs/screenshot-practice.png" width="220" alt="跟唱页">
@@ -46,10 +53,11 @@
 
 | 你的情况 | 下哪些文件 | 要解压吗 |
 |---|---|---|
-| **能上网**（推荐走这条） | 只下 **`SingAlong-Setup.exe`**（17.5 MB） | 不用 |
-| **不能上网 / 网太慢** | `SingAlong-Setup.exe` + `part1`～`part5`（约 7.2 GB，在 **v1.6.1 页面**，不在最新版页面） | 5 个 zip 全部要解压 |
-| **已经装好环境，只想要个入口** | `SingAlong-Launcher.exe`（8.9 MB） | 不用 |
-| **装了 v1.6.1，只想换面板** | `SingAlong-Panel-1.6.2.zip`（487 KB） | 解压覆盖到 `panel\` |
+| **能上网**（推荐） | 只下 **`SingAlong-Setup.exe`**（17 MB） | 不用 |
+| **不能上网 / 网太慢** | 上面那个 exe + `part1`～`part5`（共 7.2 GB，链接都在本页最上面） | 5 个 zip 全部要解压 |
+
+> 另有 `SingAlong-Panel-1.6.2.zip`（487 KB，只换界面）和 `SingAlong-Launcher.exe`（8.9 MB，
+> 只要个双击入口）两个小文件，**新手用不到**，需要时看下面的折叠块。
 
 <details>
 <summary>❓ 点开看：发布页那 5 项分别是什么？为什么都只有几 MB？</summary>

@@ -12,8 +12,15 @@ companion Android app as a karaoke practice book you can flip through anywhere.
 [![CUDA](https://img.shields.io/badge/CUDA-optional%20but%20recommended-76b900?style=flat-square&logo=nvidia&logoColor=white)](安装环境.md)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)](player/README.md)
 
-**[⬇ Download `SingAlong-Setup.exe` (17 MB — always the latest build)](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
-　·　[Offline bundle (6 files, installs offline)](https://github.com/Non-sth/sing-along-handbook/releases/tag/v1.6.1)
+**Have internet → download only this, double-click, wait:**
+**[⬇ `SingAlong-Setup.exe` (17 MB)](https://github.com/Non-sth/sing-along-handbook/releases/latest/download/SingAlong-Setup.exe)**
+
+**Offline → that exe + all 5 parts below (7.2 GB total, keep all 6 files in one folder):**
+[`part1`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part1.zip)
+[`part2`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part2.zip)
+[`part3`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part3.zip)
+[`part4`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part4.zip)
+[`part5`](https://github.com/Non-sth/sing-along-handbook/releases/download/v1.6.1/SingAlong-Offline-part5.zip)
 
 > 🌐 The panel UI has a **Chinese/English toggle** (top-right 🌐 button).
 
@@ -75,10 +82,12 @@ Both paths below end with **double-clicking the same installer exe**; they diffe
 
 | Your situation | Download | Unzip? |
 |---|---|---|
-| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17.5 MB) | no |
-| **No internet / very slow** | `SingAlong-Setup.exe` + `part1`–`part5` (~7.2 GB, on the **v1.6.1 page**) | yes, all five zips |
-| **Environment already set up, just need an entry point** | `SingAlong-Launcher.exe` (8.9 MB) | no |
-| **On v1.6.1, only want the new panel** | `SingAlong-Panel-1.6.2.zip` (487 KB) | extract over `panel\` |
+| **You have internet** (recommended) | only **`SingAlong-Setup.exe`** (17 MB) | no |
+| **No internet / very slow** | that exe + `part1`–`part5` (7.2 GB, links at the top of this page) | yes, all five zips |
+
+> Two other small files — `SingAlong-Panel-1.6.2.zip` (487 KB, panel only) and
+> `SingAlong-Launcher.exe` (8.9 MB, launcher only) — are **not needed by beginners**.
+> See the collapsible section below when you need them.
 
 <details>
 <summary>❓ What are the 5 items on the release page? Why is everything only a few MB?</summary>
